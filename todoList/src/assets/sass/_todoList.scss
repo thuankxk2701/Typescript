@@ -1,0 +1,40 @@
+.todoList {
+  background-color: #fff;
+  padding: 20px 20px 10px 20px;
+  width: 600px;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  position: relative;
+  h1 {
+    margin: 0;
+    padding-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+li.ui-state-default:not(:last-child) {
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+li.ui-state-default:last-child {
+  background: #fff;
+  border: none;
+  border-bottom: none;
+}
+
+li.completed label {
+  text-decoration: line-through;
+  color: #aaa;
+}
+.checkbox {
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,33 @@
+.buttons {
+  .buttons {
+    display: inline-block;
+    margin: 0 5px;
+    height: 18px;
+    width: 18px;
+    opacity: 0.5;
+    transition: all 0.3s;
+  }
+  .buttons:hover {
+    opacity: 1;
+    border-color: #ddd;
+  }
+  .add {
+    width: 18px;
+    height: 18px;
+    background: url(../img/iconAdd.svg) center;
+  }
+  .search {
+    width: 18px;
+    height: 18px;
+    background: url(../img/iconSearch.svg) no-repeat center;
+  }
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+.active {
+}
