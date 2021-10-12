@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-type newTodo = {
+type TodoProps = {
   onSubmit: (text: string, valueLocation: boolean) => void;
   type: string;
 };
-const Header: React.FC<newTodo> = ({ onSubmit, type }) => {
+const Header: React.FC<TodoProps> = ({ onSubmit, type }) => {
   const [value, setValue] = useState<string>('');
   const placeholder =
     type === 'ADD' ? 'Please input your task' : 'Search for your task';

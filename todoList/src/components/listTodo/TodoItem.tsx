@@ -1,10 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
-type newTodoItem = {
+type TodoItemProps = {
   todoItem: { text: string; active: boolean };
   onToggle: () => void;
 };
-const TodoItem: React.FC<newTodoItem> = ({ todoItem, onToggle }) => {
+const TodoItem: React.FC<TodoItemProps> = ({ todoItem, onToggle }) => {
   const toggleChange = () => {
     onToggle();
   };

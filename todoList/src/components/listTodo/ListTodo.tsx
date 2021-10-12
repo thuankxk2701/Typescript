@@ -1,10 +1,10 @@
 import React from 'react';
 import TodoItem from './TodoItem';
-type newListTodo = {
+type ListTodoProps = {
   todoLists: { text: string; active: boolean }[];
   onToggle: (index: number) => void;
 };
-const TodoList: React.FC<newListTodo> = ({ todoLists, onToggle }) => {
+const TodoList: React.FC<ListTodoProps> = ({ todoLists, onToggle }) => {
   return (
     <ul className='list-unstyled'>
       {todoLists.map(
