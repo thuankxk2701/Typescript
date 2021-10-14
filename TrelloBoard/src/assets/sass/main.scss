@@ -61,7 +61,7 @@ body {
     }
     height: 15rem;
     width: 22.6rem;
-
+    cursor: pointer;
     margin: 0 auto;
 
     border-radius: 4px;
@@ -94,9 +94,9 @@ hr {
 .middle__article {
   &-image {
     display: inline-block;
-    margin-top: 2rem;
-    width: 11.8rem;
-    height: 4.4rem;
+    margin-top: 1.4rem;
+    width: 5.4rem;
+    height: 5.4rem;
     margin-left: 0.6rem;
     margin-right: 1rem;
     border-radius: 50%;
@@ -110,7 +110,7 @@ hr {
     display: block;
     margin-bottom: 2rem;
     span {
-      font-size: 1.1rem;
+      font-size: 1.16rem;
       line-height: 1.3;
     }
   }
