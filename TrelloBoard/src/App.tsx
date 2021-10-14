@@ -1,30 +1,14 @@
 import React from 'react';
 
-function App() {
+import Header from './components/header/Header';
+import Article from './components/article/ArticleHome';
+const App: React.FC = () => {
   return (
-    <div className='App'>
-      <div className='header row'>
-        <ul className='header__column--1'>
-          <li>text content</li>
-        </ul>
-        <ul className='header__column--1'>
-          <li>text content</li>
-        </ul>
-        <ul className='header__column--1'>
-          <li>text content</li>
-        </ul>
-        <ul className='header__column--1'>
-          <li>text content</li>
-        </ul>
-        <ul className='header__column--1'>
-          <li>text content</li>
-        </ul>
-        <ul className='header__column--1'>
-          <li>text content</li>
-        </ul>
-      </div>
-    </div>
+    <>
+      <Header />
+      <Article />
+    </>
   );
-}
+};
 
 export default App;
