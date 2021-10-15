@@ -3,16 +3,26 @@ import ArticleImage from './ArticleImage';
 type ArticleColumnProps = {
   data: any;
   itemColumn: {
+    id: string;
     name: string;
     information: string;
   }[];
 };
 const ArticleColumn: React.FC<ArticleColumnProps> = ({ data, itemColumn }) => {
+  const HandleChange = (event: React.ChangeEvent<HTMLLIElement>) => {
+    console.log(this);
+  };
   return (
     <>
       <div className='article--scroll'>
-        {itemColumn.map((column) => (
-          <li className='article--box' draggable='true'>
+        {itemColumn.map((column, index) => (
+          <li
+            key={index}
+            className='article--box'
+            draggable='true'
+            id={column.id}
+            onChange={HandleChange.bind(this)}
+          >
             <span className='article--box__title'>
               Principal Assurance Officer
             </span>

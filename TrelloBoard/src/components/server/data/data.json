@@ -4,10 +4,12 @@
       "title": "Refined Cotton Chair",
       "item": [
         {
+          "id": "bf5e2ce6-86ac-40b7-8667-0d8d0612f18b",
           "name": "Jeffrey Shanahan",
           "information": "The XML protocol is down, back up the multi-byte interface so we can index the JSON port!"
         },
         {
+          "id": "2ac06ffd-a8d8-4f9c-a51f-6420b1aacb2d",
           "name": "Mrs. Shirley Mante",
           "information": "Neque eos totam excepturi nostrum numquam quidem sit et in."
         }
@@ -17,14 +19,17 @@
       "title": "African puff adder",
       "item": [
         {
+          "id": "7d141e7e9-728b-45e1-9cfc-44b94d112e71",
           "name": "Merle Kozey",
           "information": "Et dicta autem officiis voluptatem saepe dolore optio nobis dolor."
         },
         {
+          "id": "5ca85145-c3cb-413f-9828-8e32c9d9b7bd",
           "name": "Lorenzo Bayer",
           "information": "Est quia dignissimos laudantium perspiciatis officiis ut enim minima voluptatem.."
         },
         {
+          "id": "7ba15519-f479-4e58-aa78-60f166dedf26",
           "name": "Lorenzo Bayer",
           "information": "Voluptatem vero aut totam dolor magni corporis aut. Sint id voluptatum quisquam ea voluptas."
         }
