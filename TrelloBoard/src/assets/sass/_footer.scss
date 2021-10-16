@@ -1,0 +1,17 @@
+.footer--icon {
+  margin-left: 0.6rem;
+  margin-top: 0.2rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 0.2rem;
+}
+.footer__left--image {
+  display: inline-block;
+  &:not(:first-child) {
+    margin-left: -0.2rem;
+  }
+  margin-top: 0.2rem;
+  width: 1.38rem;
+  height: 1.38rem;
+  border-radius: 50%;
+}
