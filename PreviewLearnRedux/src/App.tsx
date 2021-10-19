@@ -1,14 +1,18 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { incremented } from './features/counter/counter-slice';
+import { incremented, amountAdded } from './features/counter/counter-slice';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
+  // increment by 1
+  // dispatch(increment())
+
+  // increment by a fixed amount
   function handleClick() {
-    dispatch(incremented());
+    dispatch(amountAdded(3));
   }
 
   return (
