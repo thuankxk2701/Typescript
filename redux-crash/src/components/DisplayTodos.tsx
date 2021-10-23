@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '../redux/hooks';
-import TodoItems from './todoItem';
+import TodoItems from './TodoItem';
 import { CounterStateProp } from '../redux/reducer';
 import { AnimatePresence, motion } from 'framer-motion';
 
