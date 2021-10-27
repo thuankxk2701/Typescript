@@ -14,14 +14,14 @@ return{
 }
 const  Counter=(props)=> {
     return (
-        <div>
-            Counter Value:{props.counter}
-            <br/>
-            <button onClick={()=>props.increment()}>+</button>
-            <button onClick={()=> props.decrement()}>-</button>
-            
-        </div>
-    )
+      <div>
+        Counter Value:{props.counter}
+        <br />
+        {/*  <button onClick={()=>props.dispatch({type:'increment'})}>+</button>*/}
+        <button onClick={() => props.increment()}>+</button>
+        <button onClick={() => props.decrement()}>-</button>
+      </div>
+    );
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Counter)
