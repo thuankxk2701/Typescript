@@ -6,11 +6,15 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.24.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.14",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0",
+    "react-redux": "^7.2.6",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -18,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "node ./server.js"
+    "dev": "nodemon ./server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,11 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "concurrently": "^5.2.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "lowdb": "^3.0.0"
   }
 }

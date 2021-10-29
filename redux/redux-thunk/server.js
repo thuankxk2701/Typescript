@@ -1,27 +1,18 @@
-import express from 'express';
-import { Low, JSONFile } from 'lowdb'
+const express= require('express')
+// import { express } from "express"
+
+// import express  from "express"
 
 const app = express()
-app.use(express.json())
-
-const adapter = new JSONFile('db.json')
-const db = new Low(adapter)
-await db.read()
-db.data ||= { posts: [] }
-
-const { posts } = db.data
-
-app.get('/title', async (req, res) => {
-  const post = posts.find((p) => p.id === req.params.id)
-  res.send(post)
+const data={
+  "sureName": "Nguyen",
+    "foreName": "Thuan",
+    "age": 18,
+    "job": "developer"
+}
+ 
+app.get('/title', (req, res)=> {
+  res.send(data)
 })
-
-app.post('/title', async (req, res, next) => {
-  const post = posts.push(req.body)
-  await db.write()
-  res.send(post)
-})
-
-app.listen(4000, () => {
-  console.log('listening on port 3000')
-})
+ const port =7000;
+app.listen(port, console.log(`listening http://localhost:${port}`))
