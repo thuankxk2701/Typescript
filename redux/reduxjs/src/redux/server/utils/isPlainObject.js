@@ -1,10 +1,10 @@
-export default function isPlainObject(obj){
- if(typeof  obj !== 'object' || obj ===null) return false;
+console.log("Test6");
+export default function isPlainObject(obj) {
+  if (typeof obj !== "object" || obj === null) return false;
+  let proto = obj;
 
- let proto= obj;
-
- while(Object.getPrototypeOf(proto)!== null){
-      proto = Object.getPrototypeOf(proto);
- }
- return Object.getPrototypeOf(obj)===proto// true or false
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto);
+  }
+  return Object.getPrototypeOf(obj) === proto; // true or false
 }
