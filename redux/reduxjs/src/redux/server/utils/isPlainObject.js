@@ -1,4 +1,3 @@
-console.log("Test6");
 export default function isPlainObject(obj) {
   if (typeof obj !== "object" || obj === null) return false;
   let proto = obj;

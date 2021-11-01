@@ -2,7 +2,7 @@ import $$observable from "./utils/symbol-observable";
 import { kindOf } from "./utils/kindOf";
 import isPlainObject from "./utils/isPlainObject";
 import ActionTypes from "./utils/actionTypes";
-console.log("Test9");
+
 
 export default function createStore(reducer, preloadedState, enhancer) {
   if (

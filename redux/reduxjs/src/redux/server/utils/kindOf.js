@@ -1,4 +1,3 @@
-console.log("Test7");
 function miniKindOf(val) {
   if (val === void 0) return "undefined";
   if (val === null) return "null";
