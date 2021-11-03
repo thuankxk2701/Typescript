@@ -32,7 +32,7 @@ const UpdatePost: React.FC = () => {
               <br />
               <div className="form-group">
                 <textarea
-                  //   rows="5"
+                  rows={5}
                   className="form-control form-control-lg"
                   placeholder="Enter Post Body Text"
                   value={body}

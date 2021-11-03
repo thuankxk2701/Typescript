@@ -5,7 +5,7 @@ const AddPost: React.FC = () => {
   let histore = useHistory();
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
-  // const rows: string | undefined = "5";
+  
   return (
     <div className="container">
       <div className="py-4">
@@ -27,7 +27,7 @@ const AddPost: React.FC = () => {
               <br />
               <div className="form-group">
                 <textarea
-                  // rows={rows}
+                  rows={5}
                   className="form-control form-control-lg"
                   placeholder="Enter Post Body Text"
                   value={body}
