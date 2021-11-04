@@ -1,22 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { deletePost } from "../../redux/action";
 
 interface PostCardProps {
   postCardItem: {
-    userId: number;
-    id: number;
+    id: any;
+    url_image_1600x900: string;
     title: string;
     body: string;
   };
 }
 const PostCard: React.FC<PostCardProps> = ({ postCardItem }) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
   return (
     <div className="col-lg-3 col-md-6 mb-4">
       <div className="card custom-card">
         <img
-          src={`https://source.unsplash.com/collection/${postCardItem.id}/1600x900`}
+          src={postCardItem.url_image_1600x900}
           alt={postCardItem.title}
           className="card-img-top"
         />
@@ -25,7 +27,7 @@ const PostCard: React.FC<PostCardProps> = ({ postCardItem }) => {
         </Link>
         <button
           className="btn btn-danger btn-delete"
-          //   onClick={() => dispatch(deletePost(postItem.id))}
+          onClick={() => dispatch(deletePost(postCardItem.id))}
         >
           <span className="material-icons">delete</span>
         </button>

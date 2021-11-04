@@ -1,15 +1,41 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getPost } from "../../redux/action";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
+import { getPost, updatePost } from "../../redux/action";
+import { typesInitialStateProps } from "../../redux/reducer";
 const UpdatePost: React.FC = () => {
+  let history = useHistory();
   const dispatch = useDispatch();
-  let id: any;
-  // { id } = useParams();
+  const post = useSelector((state: typesInitialStateProps) => state.posts);
+
+  const { id } = useParams<any>();
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
+  console.log(id);
+
+  useEffect(() => {
+    loadPost();
+  }, []);
+  useEffect(() => {
+    if (post) {
+      setTitle(post[id].title);
+      setBody(post[id].body);
+    }
+  }, [post[id]]);
   const loadPost = () => {
-    dispatch(getPost(2));
+    dispatch(getPost(id));
+  };
+  const handleSubmitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const update_post = {
+      id,
+      url_image_1600x900: post[id].url_image_1600x900,
+      url_image_1920x1080: post[id].url_image_1920x1080,
+      title: title,
+      body: body,
+    };
+    dispatch(updatePost(update_post));
+    history.push("/");
   };
   return (
     <div className="container">
@@ -17,10 +43,16 @@ const UpdatePost: React.FC = () => {
         <div className="card shadow">
           <div className="card-header">Update A Post</div>
           <div className="card-body">
-            <form
-            //   onSubmit
-            >
+            <form onSubmit={handleSubmitForm}>
+              <img
+                src={post[id].url_image_1600x900}
+                alt=""
+                style={{ width: "100%", borderRadius: "3px" }}
+              />
+              <br />
+              <br />
               <div className="form-group">
+                <h1>Title</h1>
                 <input
                   type="text"
                   className="form-control form-control-lg"
@@ -29,7 +61,7 @@ const UpdatePost: React.FC = () => {
                   onChange={e => setTitle(e.target.value)}
                 />
               </div>
-              <br />
+              <h1 style={{ marginTop: "12px" }}>Body</h1>
               <div className="form-group">
                 <textarea
                   rows={5}
