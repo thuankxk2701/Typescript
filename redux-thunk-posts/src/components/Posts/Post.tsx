@@ -22,7 +22,7 @@ const Post: React.FC = () => {
 
   return (
     <div>
-      <img src={post[id].url_image_1920x1080} alt={post[id].title} />
+      <img src={post[id].url_image} alt={post[id].title} style={{ width: "100%" }} />
       <div className="container">
         <div className="py-5">
           <h1 className="display-4 mb-3">{post[id].title}</h1>

@@ -18,7 +18,7 @@ const AddPost: React.FC = () => {
       body,
     };
     dispatch(createPost(new_post));
-    // history.push("/");
+    history.push("/");
   };
 
   return (

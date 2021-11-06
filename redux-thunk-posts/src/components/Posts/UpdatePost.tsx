@@ -29,8 +29,7 @@ const UpdatePost: React.FC = () => {
     e.preventDefault();
     const update_post = {
       id,
-      url_image_1600x900: post[id].url_image_1600x900,
-      url_image_1920x1080: post[id].url_image_1920x1080,
+      url_image_1600x900: post[id].url_image,
       title: title,
       body: body,
     };
@@ -44,11 +43,7 @@ const UpdatePost: React.FC = () => {
           <div className="card-header">Update A Post</div>
           <div className="card-body">
             <form onSubmit={handleSubmitForm}>
-              <img
-                src={post[id].url_image_1600x900}
-                alt=""
-                style={{ width: "100%", borderRadius: "3px" }}
-              />
+              <img src={post[id].url_image} alt="" style={{ width: "100%", borderRadius: "3px" }} />
               <br />
               <br />
               <div className="form-group">
