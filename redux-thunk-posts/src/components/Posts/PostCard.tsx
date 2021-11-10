@@ -19,7 +19,7 @@ const PostCard: React.FC<PostCardProps> = ({ postCardItem }) => {
   return (
     <div className="col-lg-3 col-md-6 mb-4">
       <div className="card custom-card">
-        <img src={postCardItem.url_image} alt={postCardItem.title} className="card-img-top" />
+        <img src={postCardItem.url_image} alt={postCardItem.title} className="card-img-top" style={{height:"11.2rem"}} />
         <Link to={`/updatePost/${postCardItem.id}`} className="btn btn-danger btn-edit">
           <span className="material-icons">
             <AiFillEdit style={{ fontSize: "1.6rem" }} />

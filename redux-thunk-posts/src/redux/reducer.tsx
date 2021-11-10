@@ -112,7 +112,7 @@ export function rootReducer(state = initialState, action: typesActionProps) {
     case GET_POST:
       return {
         ...state,
-        post: state.posts.find(postItem => postItem.id === action.payload),
+        post: state.posts.find(postItem => String(postItem.id) === String(action.payload)),
       };
     case UPDATE_POST:
       return {

@@ -6,22 +6,25 @@ import { typesInitialStateProps } from "../../redux/reducer";
 const UpdatePost: React.FC = () => {
   let history = useHistory();
   const dispatch = useDispatch();
-  const post = useSelector((state: typesInitialStateProps) => state.posts);
-
+  const post = useSelector((state: typesInitialStateProps) => state.post);  
   const { id } = useParams<any>();
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
-  console.log(id);
-
+  const [image,setImage]=useState<string>('')
   useEffect(() => {
     loadPost();
+    
   }, []);
   useEffect(() => {
-    if (post) {
-      setTitle(post[id].title);
-      setBody(post[id].body);
-    }
-  }, [post[id]]);
+    if(!post) return ;
+   
+    
+      setTitle(post.title);
+      setBody(post.body);
+      setImage(post.url_image)
+ 
+    
+  }, [post]);
   const loadPost = () => {
     dispatch(getPost(id));
   };
@@ -29,9 +32,9 @@ const UpdatePost: React.FC = () => {
     e.preventDefault();
     const update_post = {
       id,
-      url_image_1600x900: post[id].url_image,
-      title: title,
-      body: body,
+      url_image:image,
+      title,
+     body,
     };
     dispatch(updatePost(update_post));
     history.push("/");
@@ -43,7 +46,7 @@ const UpdatePost: React.FC = () => {
           <div className="card-header">Update A Post</div>
           <div className="card-body">
             <form onSubmit={handleSubmitForm}>
-              <img src={post[id].url_image} alt="" style={{ width: "100%", borderRadius: "3px" }} />
+              <img src={image} alt="" style={{ width: "100%", borderRadius: "3px" }} />
               <br />
               <br />
               <div className="form-group">

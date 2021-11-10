@@ -6,8 +6,10 @@ import { typesInitialStateProps } from "../../redux/reducer";
 
 const Post: React.FC = () => {
   const dispatch = useDispatch();
-  const post = useSelector((state: typesInitialStateProps) => state.posts);
+  const post = useSelector((state: typesInitialStateProps) => state.post);
   const { id } = useParams<any>();
+
+  
   useEffect(() => {
     loadPost();
   }, []);
@@ -15,18 +17,18 @@ const Post: React.FC = () => {
   const loadPost = () => {
     dispatch(getPost(id));
   };
-  if (!post)
+
     if (!post) {
       return <h1>loading..</h1>;
     }
 
   return (
     <div>
-      <img src={post[id].url_image} alt={post[id].title} style={{ width: "100%" }} />
+      <img src={post.url_image} alt={post.title} style={{ width: "100%",height:"80vh" }} />
       <div className="container">
         <div className="py-5">
-          <h1 className="display-4 mb-3">{post[id].title}</h1>
-          <p className="lead">{post[id].body}</p>
+          <h1 className="display-4 mb-3">{post.title}</h1>
+          <p className="lead">{post.body}</p>
           <p className="lead">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio similique dicta, facere
             iusto non voluptatem assumenda. Adipisci molestias modi assumenda numquam animi quo odio
