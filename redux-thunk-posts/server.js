@@ -1,16 +1,16 @@
 const express= require('express');
 const cors= require('cors');
-const path=require('http')
+const path=require('path')
 const app=express();
-// const fileRoutes = require("./routes/fileUpdateRoutes");
-require("dotenv").config();
+const fileRoutes = require("./routes/fileUpdateRoutes");
+// require("dotenv").config();
 app.use(cors());
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 7000;
 
-// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// app.use("/api", fileRoutes);
+app.use("/api", fileRoutes);
 const init = async () => {
     try {
       app.listen(port, () => {

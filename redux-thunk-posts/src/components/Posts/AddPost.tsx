@@ -14,22 +14,16 @@ const AddPost: React.FC = () => {
     try{
       if(!e.target.files)return ;
    const fileImage=await e.target.files[0];           
-         setFileImage(fileImage);    
-         
-
+         setFileImage(fileImage);         
     }catch(error:any){
      throw new Error(error)
-    }
-
- 
+    } 
   }
   const handleSubmitForm = async(e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const randomId = Math.random().toString(36).split("").slice(7).join(".");
     const formData = new FormData();  
     formData.append("file",fileImage);
-    await postFilePostImage(formData);
-    console.log(fileImage.name);    
     const new_post = {
       id: randomId,
       title,
@@ -37,7 +31,8 @@ const AddPost: React.FC = () => {
       url_image:API_URL+'uploads/'+String(fileImage.name),
     };
     dispatch(createPost(new_post));
-    history.push("/");
+    history.push("/"); 
+    await postFilePostImage(formData);
   };
 
   return (

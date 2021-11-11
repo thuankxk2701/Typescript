@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { typesInitialStateProps } from "../../redux/reducer";
 
 const Posts: React.FC = () => {
-  const posts = useSelector((state: typesInitialStateProps) => state.posts);
+  const posts = useSelector((state: typesInitialStateProps) => state.posts); 
 
   return (
     <div className="row">

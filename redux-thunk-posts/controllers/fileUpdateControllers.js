@@ -1,4 +1,4 @@
-const SingleFile = require("../models/singleFile");
+const   SingleFile = require("../models/singleFile");
 
 const postSingleFileUpload = async (req, res, next) => {
   try {
@@ -26,6 +26,6 @@ const fileSizeFormatter = (bytes, decimal) => {
   return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + " " + sizes[index];
 };
 
-module.exports = {
+module.exports={
   postSingleFileUpload
 };
