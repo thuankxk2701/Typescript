@@ -26,7 +26,7 @@ const Todos: React.FC = () => {
             dispatch(
               addTodos({
                 id: Math.random().toString(),
-                item: todo,
+                title: todo,
                 completed: false,
               })
             );
