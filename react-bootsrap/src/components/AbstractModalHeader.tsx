@@ -3,7 +3,7 @@ import * as React from "react";
 import { useContext } from "react";
 import { useEventCallback } from "@restart/hooks";
 import CloseButton, { CloseButtonVariant } from "./CloseButton";
-import ModalContext from "./ModalContext";
+import ModalContext from "./Modal/ModalContext";
 
 export interface AbstractModalHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   closeLabel?: string;
