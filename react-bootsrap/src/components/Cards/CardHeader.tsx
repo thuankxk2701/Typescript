@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import { useBootstrapPrefix } from "../ThemeProvider";
 
-import CardHeaderContext from "./CardHeaderContextValue";
+import CardHeaderContext from "./CardHeaderContext";
 import { BsPrefixProps, BsPrefixRefForwardingComponent } from "../helpers";
 
 export interface CardHeaderProps extends BsPrefixProps, React.HTMLAttributes<HTMLElement> {}
