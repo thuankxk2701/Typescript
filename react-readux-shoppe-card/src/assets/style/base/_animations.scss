@@ -1,0 +1,15 @@
+@keyframes fadeIn{
+    0% {
+        opacity: 0;
+        transform: translateY(-4rem);
+    }
+
+    80% {
+        transform: translateY(1.4rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}

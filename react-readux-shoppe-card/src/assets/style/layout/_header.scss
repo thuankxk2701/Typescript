@@ -1,0 +1,102 @@
+.header{
+    height: 12rem;
+    background-image: linear-gradient(0,#fe6433,#f53e2d);
+    padding-top: 1rem;
+    &__navbar{
+        display: flex;
+        justify-content: space-between;
+        &-list{
+            list-style: none;
+        }
+        &-item,&-item-link{
+            display: inline-block;
+            font-size: 1.6rem;
+            color:$white-color;
+            text-decoration: none;
+            font-weight: 300;
+            &:hover{
+                cursor: pointer;
+                color: rgba(255,255,255,0.7);
+            }
+        }
+      
+        &-item{
+            margin: 0 0.8rem;
+            position: relative;
+            &--strong{
+                font-weight: 400;
+            }
+            &--separate::after{
+                content: "";
+                display: block;           
+                width: 1px;
+                height: 1.4rem;
+                background-color: #FB9086;
+                 @include absCenter;
+            }
+            &--has-qr:hover .header__qr{
+             display: block;
+            }
+        }
+        &-icon-link{
+            color: $white-color;
+            text-decoration: none;
+            margin: 0.4rem;
+            align-items: center;
+            justify-content: center;
+            &:hover{
+                cursor: pointer;
+                color: rgba(255,255,255,0.7);
+            }
+        }
+        &-icon{
+            font-size: 1.8rem;
+        }
+        &-title--no-pointer{
+            cursor: text;
+            color: $white-color;
+        }
+    }
+
+    &__qr{
+        width: 15.6rem;
+        background-color: $white-color;
+      position: absolute;
+      left: 0;
+      top: 140%;
+      padding: 4px;
+      border-radius: 2px;
+      display: none;    
+      animation:fadeIn ease-in 0.4s;
+      &::before{
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+            top: -1rem;
+          width: 100%;
+          height: 2rem;        
+        
+      }
+        &-img{
+     width: 100%;
+        }
+        &-apps{
+            display: flex;
+            justify-content: space-between;
+        }
+        &-link{
+            &:first-child{
+                margin-left: 1.1rem;
+            }
+            &:last-child{
+                margin-right: 1.1rem;
+            }
+        }
+        &-download-img{
+            height: 1.4rem;
+        }
+
+    }
+
+}
