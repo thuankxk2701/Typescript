@@ -31,7 +31,12 @@ const Modal: React.FC = () => {
                   />
                 </div>
               </div>
-              .auth_form
+              <div className="auth_form__aside">
+                <p className="auth-form__policy-text">
+                  Bằng việc đăng kí,Bạn đã dồng ý với shoppe về
+                </p>
+                <a href="" className="auth-form__policy-link"></a>
+              </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./components/header/Header";
-import Modal from "./components/modal/Modal";
+// import Modal from "./components/modal/Modal";
 
 const App: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const App: React.FC = () => {
       <Header />
       <div className="container"></div>
       <footer className="footer"></footer>
-      <Modal />
+      {/* <Modal /> */}
     </div>
   );
 };
