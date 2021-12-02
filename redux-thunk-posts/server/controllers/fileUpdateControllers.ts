@@ -1,6 +1,6 @@
-const   SingleFile = require("../models/singleFile");
+import   SingleFile from "../models/singleFile";
 
-const postSingleFileUpload = async (req, res, next) => {
+const postSingleFileUpload = async (req:any, res:any, next:any) => {
   try {
     const file = new SingleFile({
       fileName: req.file.originalname,
@@ -11,12 +11,12 @@ const postSingleFileUpload = async (req, res, next) => {
 
     await file.save();
     res.status(201).send("File Uploaded Successfully");
-  } catch (error) {
+  } catch (error:any) {
     return res.status(400).send(error.message);
   }
 };
 
-const fileSizeFormatter = (bytes, decimal) => {
+const fileSizeFormatter = (bytes:number, decimal:number) => {
   if (bytes === 0) {
     return "0 Bytes";
   }
@@ -25,7 +25,6 @@ const fileSizeFormatter = (bytes, decimal) => {
   const index = Math.floor(Math.log(bytes) / Math.log(1000));
   return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + " " + sizes[index];
 };
-
-module.exports={
+export {
   postSingleFileUpload
 };
