@@ -27,7 +27,9 @@ const Search: React.FC = () => {
             <span className="header__cart-list-no-cart-msg">chua co san phan</span>
             <h4 className="header__cart_heading">San pham da them</h4>
             <ul className="header__cart-list-item">
-              <li className="header__cart-item"></li>
+              <li className="header__cart-item">
+                <img src="" alt="" className="header__cart-img" />
+              </li>
             </ul>
           </div>
         </div>
