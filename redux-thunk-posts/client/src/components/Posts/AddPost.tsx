@@ -75,7 +75,10 @@ const AddPost: React.FC = () => {
                   onChange={e => handleFileImage(e)}
                 />
                 {uploadedPercentImage > 0 && (
-                  <ProgressBar now={uploadedPercentImage} label={`${uploadedPercentImage}%`} />
+                  <>
+                    <br />
+                    <ProgressBar now={uploadedPercentImage} label={`${uploadedPercentImage}%`} />
+                  </>
                 )}
 
                 <br />
