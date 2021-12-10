@@ -17,10 +17,10 @@ export const deletePost = (id: any) => ({
   payload: id,
 });
 
-export const postFilePostImage=async (data:any) => {
+export const postFilePostImage = async (data: any, options: any) => {
   try {
-      await axios.post(API_URL+'api/' + 'singleFile', data);
+    await axios.post(API_URL + "api/" + "singleFile", data, options);
   } catch (error) {
-      throw error;
+    throw error;
   }
-}
+};

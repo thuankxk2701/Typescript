@@ -4,35 +4,49 @@ import { createPost } from "../../redux/action";
 import { useDispatch } from "react-redux";
 import { postFilePostImage } from "../../redux/action";
 import { API_URL } from "../../redux/types";
+import ProgressBar from "react-bootstrap/ProgressBar";
 const AddPost: React.FC = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
-  const [fileImage,setFileImage]=useState<any>('')
-  const handleFileImage=async(e:React.ChangeEvent<HTMLInputElement>)=>{
-    try{
-      if(!e.target.files)return ;
-   const fileImage=await e.target.files[0];           
-         setFileImage(fileImage);         
-    }catch(error:any){
-     throw new Error(error)
-    } 
-  }
-  const handleSubmitForm = async(e: React.ChangeEvent<HTMLFormElement>) => {
+  const [uploadedPercentImage, setUploadedPercentImage] = useState<number>(0);
+  const [uploadedFileImage, setUploadedFileImage] = useState<string>("");
+  const handleFileImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      if (!e.target.files) return;
+      const fileImage = e.target.files[0];
+
+      const formData = new FormData();
+      const options = {
+        onUploadProgress: (progressEvent: any) => {
+          const { loaded, total } = progressEvent;
+          let percent = Math.floor((loaded * 100) / total);
+          setUploadedPercentImage(percent);
+        },
+      };
+      formData.append("file", fileImage);
+      postFilePostImage(formData, options);
+
+      setTimeout(() => {
+        setUploadedFileImage(API_URL + "uploads/" + String(fileImage.name));
+        setUploadedPercentImage(0);
+      }, 1500);
+    } catch (error: any) {
+      throw new Error(error);
+    }
+  };
+  const handleSubmitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const randomId = Math.random().toString(36).split("").slice(7).join(".");
-    const formData = new FormData();  
-    formData.append("file",fileImage);
     const new_post = {
       id: randomId,
       title,
       body,
-      url_image:API_URL+'uploads/'+String(fileImage.name),
+      url_image: uploadedFileImage,
     };
     dispatch(createPost(new_post));
-    history.push("/"); 
-    await postFilePostImage(formData);
+    history.push("/");
   };
 
   return (
@@ -43,11 +57,27 @@ const AddPost: React.FC = () => {
           <div className="card-body">
             <form onSubmit={handleSubmitForm}>
               <div className="form-group">
+                {uploadedFileImage && (
+                  <img
+                    src={uploadedFileImage}
+                    alt="ImageUploaded"
+                    style={{
+                      width: "100%",
+                      height: "80vh",
+                      marginBottom: "1.6rem",
+                      borderRadius: "5px",
+                    }}
+                  />
+                )}
                 <input
-                  type="file"                
+                  type="file"
                   accept="image/png, image/jpeg,image/jpg"
-                  onChange={(e) => handleFileImage(e)} />
-              
+                  onChange={e => handleFileImage(e)}
+                />
+                {uploadedPercentImage > 0 && (
+                  <ProgressBar now={uploadedPercentImage} label={`${uploadedPercentImage}%`} />
+                )}
+
                 <br />
                 <br />
                 <h1>Title</h1>
