@@ -1,0 +1,279 @@
+*{
+    margin: 0;
+    padding:0 ;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+.link{
+    color: #ee4d2d;          
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.login{
+
+    &__heading{
+        padding: 10px 0;
+       width: 1200px;
+       display: flex;
+       margin: 0 auto;     
+
+     &--left{
+         display: flex;    
+          margin-right:650px ;
+         &-background{
+             width: 120px;
+             height: 100px;
+             fill: #ee4d2d;
+             
+         }
+         &-text{  
+             font-size: 34px;
+             margin-top: 30px;
+             margin-left:10px ;  
+             font-weight: 400;    
+             display: inline-block;            
+             
+        
+         }
+     }
+     &--right{
+
+        width: 80px;
+        height: 80px;
+        display: flex;          
+        justify-content: center;
+        align-items: center;
+        margin-top:10px ;
+        &-help{
+     
+            text-align: center;
+          
+        
+        }
+     }
+    }
+
+   &__main{
+       
+       width: 100%;
+       height:600px;
+       background-image: linear-gradient(to bottom right,rgba(238,77,45,1),#ff7b61);
+       display: flex;
+       justify-content: center;
+
+       &--left{
+           width: 600px;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+
+
+           &-logo{             
+                
+               width: 200px;
+               height: 200px;
+               color: #fff;
+               margin-right:45px ;
+           }
+           &-text__header{
+               font-size: 40px;
+               padding-top:2px ;
+               color: #fff;
+           }
+           &-text__description{
+            font-size: 18px;
+            width: 300px;
+            padding-top:13px ;
+            color: #fff;
+            text-align: center;
+            line-height: 1.7;
+        }
+           
+       }
+       &--right{
+        width: 600px;
+        position: relative;
+        
+        &-form{
+          position: absolute;
+          top:50%;
+          left:50%;
+          transform: translate(-50%,-50%);            
+           width: 360px;
+           height: 450px;
+           background-color: #fff;
+           padding: 26px;
+
+        }
+        &-login{
+            font-size: 24px;
+            font-weight: 400;
+            padding-bottom: 30px;
+        }  
+        
+        &-input{
+
+            &_account{
+                width: 308px;
+                height: 36px;
+                display: block;
+                font-size:18px ;
+                border: 1px solid #000;
+                border-radius: 2px;
+                overflow: hidden;
+                margin-bottom: 28px;
+            &::placeholder{
+                color: rgba(#000,0.2);
+                padding: 0 10px;
+            }
+             
+            }
+        }
+        &-next{
+            color: #fff;
+            background-color:#ff8e78;           
+            padding: 5px 129px;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-bottom: 24px;
+            transition: all 0.4s;
+            &:active{
+                background-color: #ee4d2d;
+            }        
+        }
+        
+        &-or{
+            text-align: center;
+            position: relative;
+            margin-bottom:20px ;
+
+            &::before{
+                content: '';
+                width: 134px;
+                height: 1px;
+                background-color: rgb(94, 88, 88);
+                position: absolute;
+                top: 10px;
+                left: 0;
+            }
+            &::after{
+                content: '';
+                width: 134px;
+                height: 1px;
+                background-color: rgb(94, 88, 88);
+                position: absolute;
+                top: 10px;
+                right: 0;
+            }
+        }
+        &-box_login{
+            width: 100%;
+            height: 38px;
+            margin-bottom:24px;
+           display: flex;
+           justify-content: space-between;
+           cursor: pointer;
+
+          &-item{
+              width: 90px;
+             
+               padding: 8px 2px;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               border-radius: 4px;
+               
+            
+              &--icon{
+                 color: #fff;
+                 font-size: 20px;
+              
+              }
+              &--text{
+                  font-size: 14px;
+                  color:#fff;
+                  font-weight: 400;
+                  margin-left: 4px;
+                  margin-top: 2px;
+                 
+              }
+          }
+
+
+
+
+        }
+
+        &-detail{
+            margin-bottom: 24px;
+            &_text{
+                font-size: 13.6px;
+                text-align: center;
+                 line-height: 1.4;
+            }
+            
+            &_box{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                & span{
+                    font-size: 14px;
+                    font-weight: 300;
+                }
+            }
+            &_link{
+                font-size: 14px;
+                padding: 0 6px;
+                
+            }
+        }
+        
+        &-footer{
+            width: 100%;
+            text-align: center;
+            
+            &_text{
+                font-size: 14px;
+                margin-right:6px ;
+                color: rgba(#000,0.4);
+            }
+            &_switch{
+                font-size: 18px;
+            }
+        }
+    }
+    
+   }
+   &__footer{
+       margin-top: 30px;
+       width: 1200px;
+       margin-left: auto;
+       margin-right:auto ;
+       display: flex;
+   }
+
+}
+.facebook{
+    background-color: #0c70ff;
+    transition: all 0.2s;
+  &:active{
+      background-color: #0088ff;
+  }
+ }
+.google{
+    background-color: #0088ff;
+    &:active{
+        background-color: #319dfc;
+    }
+}
+.apple{
+    background-color: #000;
+    &:active{
+        background-color: rgba(#000,0.8);
+    }
+}
