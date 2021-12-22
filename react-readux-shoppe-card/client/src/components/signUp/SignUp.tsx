@@ -1,12 +1,12 @@
 import React from "react";
 import Login from "../login/Login";
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
   return (
     <>
-      <Login types="SignIn" />
+      <Login types="SignUp" />
     </>
   );
 };
 
-export default SignIn;
+export default SignUp;
