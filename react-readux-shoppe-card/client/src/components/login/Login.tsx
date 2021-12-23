@@ -2,7 +2,7 @@ import React from "react";
 import LoginHeader from "./LoginHeader";
 import LoginMain from "./LoginMain";
 import LoginFooter from "./LoginFooter";
-import "./login.scss";
+import "./Login.scss";
 
 interface loginStateProps {
   types: string;
