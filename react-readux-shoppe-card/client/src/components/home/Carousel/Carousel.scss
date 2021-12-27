@@ -1,0 +1,14 @@
+.carousel__box{
+    width: 785px;
+    height: 250px;
+    overflow: hidden;
+
+    box-sizing: border-box;
+        &--image{      
+    
+        & img{
+            width: 785px;
+            height: 250px; 
+        }
+    }
+}

@@ -7,7 +7,7 @@ const app = express();
 require("dotenv").config();
 app.use(cors());
 app.use(bodyParser.json());
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 8080;
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
