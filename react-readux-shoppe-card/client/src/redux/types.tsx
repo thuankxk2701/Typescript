@@ -78,3 +78,62 @@ export const numberListFrames = [
     textBottom: "Voucher & Dịch Vụ",
   },
 ];
+
+export const numberListSimple = [
+  {
+    classImageTop: "home__article--simple-carousel_right__scroll-lists--item_frames__image-top--1",
+    textTop: "Áo giữ nhiệt 159k",
+    classImageBottom:
+      "home__article--simple-carousel_right__scroll-lists--item_frames__image-bottom--1",
+    textBottom: "Săn deal Noel",
+  },
+  {
+    classImageTop: "home__article--simple-carousel_right__scroll-lists--item_frames__image-top--2",
+    textTop: "Mua 1 tặng 1",
+    classImageBottom:
+      "home__article--simple-carousel_right__scroll-lists--item_frames__image-bottom--2",
+    textBottom: "Mua 1 tặng 1",
+  },
+  {
+    classImageTop: "home__article--simple-carousel_right__scroll-lists--item_frames__image-top--3",
+    textTop: "Mua là có quà",
+    classImageBottom:
+      "home__article--simple-carousel_right__scroll-lists--item_frames__image-bottom--3",
+    textBottom: "Mua 1 tặng 1",
+  },
+  {
+    classImageTop: "home__article--simple-carousel_right__scroll-lists--item_frames__image-top--4",
+    textTop: "Da Khỏe sạch mụn",
+    classImageBottom:
+      "home__article--simple-carousel_right__scroll-lists--item_frames__image-bottom--4",
+    textBottom: "Giảm đến 50%",
+  },
+  {
+    classImageTop: "home__article--simple-carousel_right__scroll-lists--item_frames__image-top--5",
+    textTop: "Mua 1 tặng 1",
+    classImageBottom:
+      "home__article--simple-carousel_right__scroll-lists--item_frames__image-bottom--5",
+    textBottom: "Siêu deal giảm cự...",
+  },
+  {
+    classImageTop: "home__article--simple-carousel_right__scroll-lists--item_frames__image-top--6",
+    textTop: "Ưu đãi đến 40%",
+    classImageBottom:
+      "home__article--simple-carousel_right__scroll-lists--item_frames__image-bottom--6",
+    textBottom: "Mua là có quà",
+  },
+  {
+    classImageTop: "home__article--simple-carousel_right__scroll-lists--item_frames__image-top--7",
+    textTop: "Mua 2 tính 1",
+    classImageBottom:
+      "home__article--simple-carousel_right__scroll-lists--item_frames__image-bottom--7",
+    textBottom: "Giảm đến 50%",
+  },
+  {
+    classImageTop: "home__article--simple-carousel_right__scroll-lists--item_frames__image-top--8",
+    textTop: "Deli giảm tới 50%",
+    classImageBottom:
+      "home__article--simple-carousel_right__scroll-lists--item_frames__image-bottom--8",
+    textBottom: "Xem tất cả ->",
+  },
+];
