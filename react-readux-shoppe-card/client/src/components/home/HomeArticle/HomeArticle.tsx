@@ -1,6 +1,9 @@
 import React from "react";
 import HomeArticleCategory from "./HomeArticleCategory/HomeArticleCategory";
 import HomeArticleSimple from "./HomeArticleSimple/HomeArticleSimple";
+import HomeArticleSearchTrends from "./HomeArticleSearchTrends/HomeArticleSearchTrends";
+import NavbarSuggest from "../NavbarSuggest/NavbarSuggest";
+import HomeArticleProducts from "./HomeArticleProducts/HomeArticleProducts";
 import "./HomeArticle.scss";
 
 const HomeArticle: React.FC = () => {
@@ -11,7 +14,9 @@ const HomeArticle: React.FC = () => {
       </div>
       <HomeArticleCategory />
       <HomeArticleSimple />
-      <div>text</div>
+      <HomeArticleSearchTrends />
+      <NavbarSuggest />
+      <HomeArticleProducts />
     </div>
   );
 };
