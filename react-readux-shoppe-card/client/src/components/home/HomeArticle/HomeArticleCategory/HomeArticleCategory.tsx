@@ -32,7 +32,7 @@ const HomeArticleCategory: React.FC = () => {
                   active: !isArrowCarousel,
                 })}
               >
-                <div className={list.classImageTop}></div>
+                <img src={list.urlImageTop} alt="img" />
                 <span>{list.textTop}</span>
               </Link>
               <Link
@@ -41,7 +41,7 @@ const HomeArticleCategory: React.FC = () => {
                   active: !isArrowCarousel,
                 })}
               >
-                <div className={list.classImageBottom}></div>
+                <img src={list.urlImageBottom} alt="img" />
                 <span>{list.textBottom}</span>
               </Link>
             </li>

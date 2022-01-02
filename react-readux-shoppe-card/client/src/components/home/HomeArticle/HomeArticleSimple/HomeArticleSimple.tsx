@@ -102,7 +102,7 @@ const HomeArticleSimple: React.FC = () => {
                         },
                       )}
                     >
-                      <div className={list.classImageTop}></div>
+                      <img src={list.urlImageTop} alt="img" />
                       <span>{list.textTop}</span>
                     </Link>
                     <Link
@@ -114,7 +114,7 @@ const HomeArticleSimple: React.FC = () => {
                         },
                       )}
                     >
-                      <div className={list.classImageBottom}></div>
+                      <img src={list.urlImageBottom} alt="img" />
                       <span>{list.textBottom}</span>
                     </Link>
                   </li>

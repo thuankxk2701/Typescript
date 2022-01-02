@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface stateAllProductProps {
+  id: any;
   favorite: boolean;
   title: string;
   listUrlImage: string[];
   rating: number;
   peopleRate: number;
-  peopleBought: number;
+  peopleBought: string;
   price: number[];
   discount: number;
   color: string[];
@@ -41,6 +42,7 @@ export interface stateAllProductProps {
 
 const initialState: stateAllProductProps[] = [
   {
+    id: 1,
     favorite: true,
     title: "Váy Hai Dây Hoa Nhí/ Áo Khoác Cardigan Mỏng HT01 Phong Cách Hàn Quốc",
     listUrlImage: [
@@ -53,7 +55,7 @@ const initialState: stateAllProductProps[] = [
     ],
     rating: 5.0,
     peopleRate: 5400,
-    peopleBought: 115000,
+    peopleBought: "11,000",
     price: [145.0, 160.0, 240.0, 300.0],
     discount: 25,
     color: ["Cả set", "Váy lẻ", "Lẻ áo cardigan"],
@@ -86,3 +88,27 @@ const initialState: stateAllProductProps[] = [
     },
   },
 ];
+
+const productReducer = createSlice({
+  name: "products",
+  initialState: initialState,
+  reducers: {
+    addProduct: (state, action: PayloadAction<stateAllProductProps>) => {
+      state.push(action.payload);
+      return state;
+    },
+    updateProduct: (state, action: PayloadAction<stateAllProductProps>) => {
+      return state.map(product => {
+        if (product.id === action.payload.id) {
+          return {
+            ...product,
+            ...action.payload,
+          };
+        }
+        return product;
+      });
+    },
+  },
+});
+export const { addProduct, updateProduct } = productReducer.actions;
+export const reducer = productReducer.reducer;
