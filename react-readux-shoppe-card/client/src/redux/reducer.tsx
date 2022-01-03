@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface stateAllProductProps {
+  customized: boolean;
   id: any;
   favorite: boolean;
   title: string;
@@ -43,6 +44,7 @@ export interface stateAllProductProps {
 const initialState: stateAllProductProps[] = [
   {
     id: 1,
+    customized: true,
     favorite: true,
     title: "Váy Hai Dây Hoa Nhí/ Áo Khoác Cardigan Mỏng HT01 Phong Cách Hàn Quốc",
     listUrlImage: [

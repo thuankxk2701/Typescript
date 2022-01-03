@@ -25,7 +25,7 @@ const HomeArticleProducts: React.FC = () => {
         </div>
         <div className="products__list--footer">
           <div className="products__list--footer-price">
-            {String(product.price[0] * ((100 - product.discount) / 100))
+            {String(product.price[0] * ((100 - product.discount) / 100) - 0.001)
               .split(".")
               .map((str: string, index: number) => {
                 if (index === 1) {
@@ -58,6 +58,22 @@ const HomeArticleProducts: React.FC = () => {
               .join("") + "k"}
           </div>
         </div>
+        {product.discount !== 0 && (
+          <div className="products__list--discount">
+            <span className="products__list--discount-number">{product.discount + "%"}</span>
+            <span className="products__list--discount-text">giảm</span>
+          </div>
+        )}
+        {product.customized && (
+          <div className="products__list--customize">
+            <img
+              src="https://cf.shopee.vn/file/1102b20a83c245af2039bb62ea3e21ec"
+              alt="img"
+              className="products__list--customize-image"
+            />
+          </div>
+        )}
+        {product.favorite && <div className="products__list--favorite">Yêu thích</div>}
       </Link>
       <div className="products__list">text2</div>
       <div className="products__list">text3</div>
