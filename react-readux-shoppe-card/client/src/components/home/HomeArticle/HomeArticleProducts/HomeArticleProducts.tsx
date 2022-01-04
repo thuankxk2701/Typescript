@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import "./HomArticleProducts.scss";
 
 const HomeArticleProducts: React.FC = () => {
-  const products: stateAllProductProps[] = useAppSelector(state => state);
+  const products: stateAllProductProps[] = useAppSelector(state => state.products);
   const [product] = products;
   console.log(products);
 
   return (
     <div className="products__lists">
-      <Link to="/list-1" className="products__list">
+      <Link to={`/product-${product.id}`} className="products__list">
         <img className="products__list--image" src={product.listUrlImage[0]} alt={product.title} />
         <div className="products__list--title">
           {product.title

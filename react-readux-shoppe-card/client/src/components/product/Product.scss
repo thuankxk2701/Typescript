@@ -1,0 +1,48 @@
+.product{
+    background-color: #eee;
+    width: 100vw;
+
+    &__spinner{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        & .spinner-border{
+            width: 10rem;
+            height: 10rem;
+        } 
+    }
+    &__connective{
+        padding-top: 124px;
+        width: 1200px;
+        margin: 0 auto; 
+        font-size: 14px;
+        font-weight: 400;        
+        &--main{
+            color: rgb(0, 183, 255);
+        }
+        &--page{
+            font-size: 12px;
+        }
+    }  
+    &__main{
+        padding: 10px;
+        width: 1200px;
+        height: 680px;
+        background-color: #fff;
+        margin: 0 auto; 
+        display: flex;
+        margin-top: 10px;
+        &--carousel{
+            width: 36%;
+            display: flex;
+            flex-direction: column;
+        }
+        &--detail{
+            width: 64%;
+        }
+
+    }
+}

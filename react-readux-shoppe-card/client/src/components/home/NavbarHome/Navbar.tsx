@@ -55,9 +55,9 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       <div className="navbar__home--footer">
-        <div className="navbar__home--footer-logo">
+        <Link to="/" className="navbar__home--footer-logo">
           <Logo className="icon" />
-        </div>
+        </Link>
         <div className="navbar__home--footer-search">
           <div className="navbar__home--footer-search_input">
             <input type="text" placeholder="Search Production" />
