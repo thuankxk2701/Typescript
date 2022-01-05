@@ -1,0 +1,97 @@
+.product__main--detail{
+    padding: 0 0 0 20px ;
+
+    &-content{
+     
+        &_header{
+            
+            font-size:20px;
+
+            &__favorite{
+                display: inline-block;         
+                margin-right: 6px;
+            
+                font-size: 12px;
+                padding: 1px 3px;
+                border-radius: 2px;         
+                color: #fff;
+                background-color:#ee4d2d;
+            }
+         
+        }
+        &_rate{
+            display: flex;
+            margin-top: 6px;
+
+            &__star{
+                color:  #ee4d2d;
+                position: relative;
+                & span{
+                    display: inline-block;
+                    line-height: 20px;
+                     font-size: 18px;                            
+                    margin-top: 2px;                   
+                    box-sizing: border-box;
+                    width: 30px; 
+                    padding-bottom: 2px;
+                    border-bottom: 1px solid #ee4d2d;
+                }
+                & .icon{
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                }
+                &::after{
+                    content: '';
+                    position: absolute;
+                    width: 2px;
+                    top: 0;
+                    right: -20px;
+                    height: 96%;
+                    background-color: #eee;
+                }             
+            }
+            &__people-rate{
+                margin-left:40px ;
+                position: relative;
+               
+                &--amount {
+                    display: inline-block;                
+                    border-bottom: 1px solid #000;
+                    margin-right: 4px;
+                }
+                 &--text{
+                     color: rgb(148, 141, 141);
+                 }
+            &::after{
+                    content: '';
+                    position: absolute;
+                    width: 2px;
+                    top: 0;
+                    right: -20px;
+                    height: 96%;
+                    background-color: #eee;
+                }             
+
+            }
+            &__people-buy{
+                margin-left:40px ;
+               
+                &--amount {
+                    display: inline-block;                
+                    border-bottom: 1px solid #000;
+                    margin-right: 4px;
+                }
+                 &--text{
+                     color: rgb(148, 141, 141);
+                 }
+
+            }
+        }
+        &_post{
+            margin-top:10px ;
+            width: 98%;
+            height: 120px;
+            background-color: #eee;
+        }
+    }
+}

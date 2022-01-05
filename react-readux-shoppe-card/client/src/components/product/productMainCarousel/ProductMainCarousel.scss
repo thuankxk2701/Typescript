@@ -10,11 +10,81 @@
           & img{
               width: 100%;
               height: 555px;
-
           }
         }
     }
     &-commented{
+        width: 90%;
+        margin: 40px auto 0;
         display: flex;
+
+        &_share{
+            margin-right: 40px;
+            display: flex;
+
+            &__message{
+                width: 25px;
+                height: 25px;
+                padding: 0;
+                border: 0;
+                margin-left: 5px;
+                outline: none;
+                background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/1876c121524255f7eb6a64b4d8d0b7e3.png);
+                background-position: 0 -100%;
+                background-size: 100%;
+                background-color: transparent;
+            }
+            &__facebook{
+                width: 25px;
+                height: 25px;
+                padding: 0;
+                border: 0;
+                margin-left: 5px;
+                outline: none;
+                background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/1876c121524255f7eb6a64b4d8d0b7e3.png);
+                background-position: 0 0;
+                background-size: 100%;
+                background-color: transparent;
+            }
+            &__pinter{
+                width: 25px;
+                height: 25px;
+                padding: 0;
+                border: 0;
+                margin-left: 5px;
+                outline: none;
+                background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/1876c121524255f7eb6a64b4d8d0b7e3.png);
+                background-position: 0 -300%;
+                background-size: 100%;
+                background-color: transparent;
+            }
+            &__twitter{
+                width: 25px;
+                height: 25px;
+                padding: 0;
+                border: 0;
+                margin-left: 5px;
+                outline: none;
+                background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/1876c121524255f7eb6a64b4d8d0b7e3.png);
+                background-position: 0 -400%;
+                background-size: 100%;
+                background-color: transparent;
+            }
+
+        }
+        &_favorites{
+            display: flex;           
+            &__icon{
+                margin-right:10px ;                
+                & .icon{
+                    font-size: 26px;
+                    color: rgb(255, 66, 79);
+                }
+            }
+            &__text{
+                margin-top: 2px;
+                
+            }
+        }
     }
 }

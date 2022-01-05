@@ -8,10 +8,10 @@ export interface stateAllProductProps {
   listUrlImage: string[];
   rating: number;
   peopleRate: number;
-  peopleBought: string;
+  peopleBought: number;
   price: number[];
   discount: number;
-  color: string[];
+  types: string[];
   size: string[];
   quantity: number;
   numberOfFavorites: number;
@@ -61,10 +61,10 @@ const initialState: typesInitialStateProps = {
       ],
       rating: 5.0,
       peopleRate: 5400,
-      peopleBought: "11,000",
+      peopleBought: 11000,
       price: [145.0, 160.0, 240.0, 300.0],
       discount: 25,
-      color: ["Cả set", "Váy lẻ", "Lẻ áo cardigan"],
+      types: ["Cả set", "Váy lẻ", "Lẻ áo cardigan"],
       size: ["XS", "S", "M", "L"],
       quantity: 1176,
       numberOfFavorites: 23400,

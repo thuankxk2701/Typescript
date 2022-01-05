@@ -7,8 +7,6 @@ interface typeUrlImage {
   numberOfFavorites: number;
 }
 const ProductMainCarousel: React.FC<typeUrlImage> = ({ listUrlImage, numberOfFavorites }) => {
-  console.log(numberOfFavorites / 1000);
-
   return (
     <>
       <div className="product__main--carousel-slide">
@@ -22,6 +20,7 @@ const ProductMainCarousel: React.FC<typeUrlImage> = ({ listUrlImage, numberOfFav
       </div>
       <div className="product__main--carousel-commented">
         <div className="product__main--carousel-commented_share">
+          <div className="product__main--carousel-commented_share__text">Chia sẻ: </div>
           <div className="product__main--carousel-commented_share__message"></div>
           <div className="product__main--carousel-commented_share__facebook"></div>
           <div className="product__main--carousel-commented_share__pinter"></div>

@@ -6,6 +6,7 @@ import { typesInitialStateProps } from "../../redux/reducer";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import Spinner from "react-bootstrap/Spinner";
 import ProductMainCarousel from "./productMainCarousel/ProductMainCarousel";
+import ProductMainDetail from "./productMainDetail/ProductMainDetail";
 import "./Product.scss";
 const Product: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ const Product: React.FC = () => {
   }, []);
 
   const { id } = useParams<any>();
+  console.log(product);
 
   if (!product) {
     return (
@@ -24,7 +26,6 @@ const Product: React.FC = () => {
       </div>
     );
   }
-  console.log(product);
 
   return (
     <div className="product">
@@ -41,7 +42,19 @@ const Product: React.FC = () => {
             numberOfFavorites={product.numberOfFavorites}
           />
         </div>
-        <div className="product__main--detail">Right</div>
+        <div className="product__main--detail">
+          <ProductMainDetail
+            discount={product.discount}
+            types={product.types}
+            title={product.title}
+            price={product.price}
+            favorite={product.favorite}
+            rating={product.rating}
+            peopleRate={product.peopleRate}
+            peopleBought={product.peopleBought}
+            quantity={product.quantity}
+          />
+        </div>
       </div>
     </div>
   );
