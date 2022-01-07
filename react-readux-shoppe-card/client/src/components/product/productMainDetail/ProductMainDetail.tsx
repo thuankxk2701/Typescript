@@ -1,5 +1,7 @@
 import React from "react";
 import { BsStarFill } from "react-icons/bs";
+import LogoFree from "../../logo/LogoFree";
+import { FaCarSide } from "react-icons/fa";
 import "./ProductMainDetail.scss";
 
 interface typeProductDetailProps {
@@ -24,11 +26,6 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
   peopleBought,
   quantity,
 }) => {
-  console.log(types, title, price, favorite, rating, peopleRate, peopleBought, quantity);
-  let listRating = [];
-  for (let i = 0; i < Math.ceil(rating); i++) {
-    listRating.push(i);
-  }
   return (
     <>
       <div className="product__main--detail-content">
@@ -64,28 +61,120 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
           <div className="product__main--detail-content_post__box">
             <div className="product__main--detail-content_post__box-price">
               <div className="product__main--detail-content_post__box-price--init">
-                <span className='"product__main--detail-content_post__box-price--init_first'>
-                  {price[0] + "đ"}
-                </span>
-                -
-                <span className='"product__main--detail-content_post__box-price--init_last'>
-                  {price[price.length - 1] + "đ"}
+                <span className="product__main--detail-content_post__box-price--init_first">
+                  {price[0] - 0.001 + "đ"}
+                </span>{" "}
+                -{" "}
+                <span className="product__main--detail-content_post__box-price--init_last">
+                  {price[price.length - 1] - 0.001 + "đ"}
                 </span>
               </div>
               <div className="product__main--detail-content_post__box-price--shell">
-                <span className='"product__main--detail-content_post__box-price--shell_first'>
-                  {price[0] + "đ"}
+                <span className="product__main--detail-content_post__box-price--shell_first">
+                  {String(price[0] * ((100 - discount) / 100) - 0.001)
+                    .split(".")
+                    .map((str: string, index: number) => {
+                      if (index === 1) {
+                        return str.padEnd(3, "0");
+                      } else {
+                        let result = "";
+                        let i = str.length;
+                        let placement = 0;
+                        while (i !== 0) {
+                          i--;
+                          if (placement % 3 === 0 && placement !== 0) {
+                            result = str[i] + "," + result;
+                          } else result = str[i] + result;
+                          placement++;
+                        }
+                        return result;
+                      }
+                    })
+                    .join(".") + "đ"}
                 </span>
                 -
-                <span className='"product__main--detail-content_post__box-price--shell_last'>
-                  {price[price.length - 1] + "đ"}
+                <span className="product__main--detail-content_post__box-price--shell_last">
+                  {String(price[price.length - 1] * ((100 - discount) / 100) - 0.001)
+                    .split(".")
+                    .map((str: string, index: number) => {
+                      if (index === 1) {
+                        return str.padEnd(3, "0");
+                      } else {
+                        let result = "";
+                        let i = str.length;
+                        let placement = 0;
+                        while (i !== 0) {
+                          i--;
+                          if (placement % 3 === 0 && placement !== 0) {
+                            result = str[i] + "," + result;
+                          } else result = str[i] + result;
+                          placement++;
+                        }
+                        return result;
+                      }
+                    })
+                    .join(".") + " đ"}
                 </span>
+              </div>
+              <div className="product__main--detail-content_post__box-price--discount">
+                {discount}% GIẢM
+              </div>
+            </div>
+            <div className="product__main--detail-content_post__box-text">
+              <LogoFree className="product__main--detail-content_post__box-text--logo" />
+
+              <div className="product__main--detail-content_post__box-text--left">
+                <div className="product__main--detail-content_post__box-text--left_top">
+                  Gì cũng rẻ
+                </div>
+                <div className="product__main--detail-content_post__box-text--left_bottom">
+                  Giá tốt nhất so với các sản phẩm cùng loại trên shoppe!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="product__main--detail-content_movement">
+          <div className="product__main--detail-content_movement__left">Vận chuyển</div>
+          <div className="product__main--detail-content_movement__right">
+            <div className="product__main--detail-content_movement__right-bonus">
+              <img
+                className="product__main--detail-content_movement__right-bonus--icon"
+                alt="img"
+                src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/pdp/1cdd37339544d858f4d0ade5723cd477.png"
+              />
+              <div className="product__main--detail-content_movement__right-bonus--text">
+                <p className="product__main--detail-content_movement__right-bonus--text_header">
+                  Miễn phí vận chuyển
+                </p>
+                <p className="product__main--detail-content_movement__right-bonus--text_footer">
+                  Miễn phí vận chuyển cho đơn hàng trên ₫50.000
+                </p>
+              </div>
+            </div>
+            <div className="product__main--detail-content_movement__right-street">
+              <FaCarSide className="product__main--detail-content_movement__right-street--icon" />
+              <div className="product__main--detail-content_movement__right-street--text">
+                <p className="product__main--detail-content_movement__right-street--text_header">
+                  Vận Chuyển Tới
+                  <span> Option select</span>
+                </p>
+                <p className="product__main--detail-content_movement__right-street--text_footer">
+                  Phí Vận Chuyển
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <form className="product__main--detail-form"></form>
+      <form className="product__main--detail-form">
+        <div className="product__main--detail-form_type">
+          <div className="product__main--detail-form_type__title">Loại</div>
+        </div>
+        <div className="product__main--detail-form_size"></div>
+        <div className="product__main--detail-form_quantity"></div>
+        <div className="product__main--detail-form_add"></div>
+      </form>
     </>
   );
 };

@@ -7,7 +7,7 @@ import "./HomArticleProducts.scss";
 const HomeArticleProducts: React.FC = () => {
   const products: stateAllProductProps[] = useAppSelector(state => state.products);
   const [product] = products;
-  console.log(products);
+
 
   return (
     <div className="products__lists">
@@ -47,15 +47,7 @@ const HomeArticleProducts: React.FC = () => {
               .join(".") + " đ"}
           </div>
           <div className="products__list--footer-sold">
-            Đã bán{" "}
-            {String(product.peopleBought)
-              .split(",")
-              .map((str: string, index: number) => {
-                if (index === 1) {
-                  return "";
-                } else return str;
-              })
-              .join("") + "k"}
+            Đã bán {product.peopleBought / 1000 + "k"}
           </div>
         </div>
         {product.discount !== 0 && (
