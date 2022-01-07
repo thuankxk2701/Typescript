@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./HomArticleProducts.scss";
 
 const HomeArticleProducts: React.FC = () => {
-  const products: stateAllProductProps[] = useAppSelector(state => state.products);
+  const products: stateAllProductProps[] = useAppSelector(state => state.productsReducer.products);
   const [product] = products;
 
 

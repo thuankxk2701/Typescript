@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+
 export interface stateAllProductProps {
   customized: boolean;
   id: any;
@@ -44,7 +45,7 @@ export interface typesInitialStateProps {
   products: stateAllProductProps[];
   product: any;
 }
-const initialState: typesInitialStateProps = {
+const initialStateProducts: typesInitialStateProps = {
   products: [
     {
       id: 1,
@@ -97,9 +98,55 @@ const initialState: typesInitialStateProps = {
   product: null,
 };
 
+export interface typeStateProfileUserProps {
+  nameSignIn: string;
+  name: string;
+  email: string;
+  numberPhone: string;
+  nameShop: string;
+  sex: string;
+  birth: string;
+  password: string;
+  address: string;
+  urlImage: string;
+}
+export interface typeStateStoreUserProps {
+  id: any;
+  types: string;
+  size: string;
+  quantity: string;
+}
+export interface typeUsersProps {
+  users: {
+    profile: typeStateProfileUserProps;
+    stores: typeStateStoreUserProps[];
+  }[];
+  user: any;
+}
+const initialStateUsers: typeUsersProps = {
+  users: [
+    {
+      profile: {
+        nameSignIn: "randomName1231",
+        name: "",
+        email: "ttctde@gmail.com",
+        numberPhone: "0912207142",
+        nameShop: "",
+        sex: "",
+        birth: "27-01-2003",
+        password: "2003",
+        address: "",
+        urlImage: "../assets/image/avatar.jpg",
+      },
+      stores: [],
+    },
+  ],
+  user: null,
+};
+
 const productReducer = createSlice({
   name: "products",
-  initialState: initialState,
+  initialState: initialStateProducts,
   reducers: {
     getProduct: (state, action: PayloadAction<any>) => {
       return {
@@ -115,5 +162,29 @@ const productReducer = createSlice({
     },
   },
 });
+const userReducer = createSlice({
+  name: "users",
+  initialState: initialStateUsers,
+  reducers: {
+    updateStore: (state, action: PayloadAction<typeStateStoreUserProps>) => {
+      return {
+        ...state,
+        store: [
+          state.users.stores.map(store =>
+            String(store.id) === String(action.payload.id) ? action.payload : store,
+          ),
+        ],
+      };
+    },
+
+    updateUser: (state, action: PayloadAction<typeStateProfileUserProps>) => {
+      return {
+        ...state,
+        profile: action.payload,
+      };
+    },
+  },
+});
+
 export const { addProduct, getProduct } = productReducer.actions;
-export const reducer = productReducer.reducer;
+export const productsReducer = productReducer.reducer;

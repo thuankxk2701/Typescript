@@ -10,7 +10,7 @@ import ProductMainDetail from "./productMainDetail/ProductMainDetail";
 import "./Product.scss";
 const Product: React.FC = () => {
   const dispatch = useAppDispatch();
-  const product = useAppSelector((state: typesInitialStateProps) => state.product);
+  const product = useAppSelector((state: any) => state.productsReducer.product);
 
   useEffect(() => {
     dispatch(getProduct(id));
