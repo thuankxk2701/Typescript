@@ -96,12 +96,15 @@ const Navbar: React.FC = () => {
                     className="navbar__home--header-box_right__switch"
                   >
                     <Link
-                      to="/user/profile"
+                      to="/user/account/profile"
                       className="navbar__home--header-box_right__switch-account"
                     >
                       Tài khoản của tôi
                     </Link>
-                    <Link to="/user/store" className="navbar__home--header-box_right__switch-store">
+                    <Link
+                      to="/user/account/store"
+                      className="navbar__home--header-box_right__switch-store"
+                    >
                       Đơn Mua
                     </Link>
                     <button
