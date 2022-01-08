@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaFacebook } from "react-icons/fa";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { AiFillApple } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { getUser } from "../../redux/reducer";
+import { typeStateUserProps, typeUsersProps } from "../../redux/reducer";
 
 interface loginMainProps {
   types: string;
 }
 
 const LoginMain: React.FC<loginMainProps> = ({ types }) => {
+  const user = useAppSelector(state => state.usersReducer.user);
+  const history = useHistory();
+  const [nameSignIn, setNameSignIn] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const handleNameSignIn = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNameSignIn(e.target.value);
+  };
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+  const handSubmitSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (nameSignIn.trim() !== "" && password.trim() !== "")
+      dispatch(getUser({ nameSignIn: nameSignIn, password: password }));
+  };
+  if (user.profile.nameSignIn !== "") {
+    history.push("/");
+  }
+
   return (
     <div className="login__main">
       <div className="login__main--left">
@@ -22,19 +45,25 @@ const LoginMain: React.FC<loginMainProps> = ({ types }) => {
 
       <div className="login__main--right">
         {types === "SignIn" && (
-          <form className="login__main--right-form">
+          <form onSubmit={handSubmitSignIn} className="login__main--right-form">
             <h4 className="login__main--right-login">{types}</h4>
             <input
+              onChange={handleNameSignIn}
               type="text"
               placeholder="Email/NumberPhone"
               className="login__main--right-input_account"
+              value={nameSignIn}
             />
             <input
+              name={password}
               type="password"
               placeholder="Password"
               className="login__main--right-input_password"
+              onChange={handlePassword}
             />
-            <button className="login__main--right-next">{types}</button>
+            <button onSubmit={handSubmitSignIn} className="login__main--right-next">
+              {types}
+            </button>
             <div className="login__main--right-support">
               <a href="#1">Quên mật khẩu</a>
               <a href="#1">Đăng nhập với SMS</a>

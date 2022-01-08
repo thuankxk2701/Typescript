@@ -116,18 +116,19 @@ export interface typeStateStoreUserProps {
   size: string;
   quantity: string;
 }
+export interface typeStateUserProps {
+  profile: typeStateProfileUserProps;
+  stores: typeStateStoreUserProps[];
+}
 export interface typeUsersProps {
-  users: {
-    profile: typeStateProfileUserProps;
-    stores: typeStateStoreUserProps[];
-  }[];
-  user: any;
+  users: typeStateUserProps[];
+  user: typeStateUserProps | any;
 }
 const initialStateUsers: typeUsersProps = {
   users: [
     {
       profile: {
-        nameSignIn: "randomName1231",
+        nameSignIn: "randomName131",
         name: "",
         email: "ttctde@gmail.com",
         numberPhone: "0912207142",
@@ -136,12 +137,34 @@ const initialStateUsers: typeUsersProps = {
         birth: "27-01-2003",
         password: "2003",
         address: "",
-        urlImage: "../assets/image/avatar.jpg",
+        urlImage:
+          "https://scontent.fhan4-3.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-5&_nc_sid=7206a8&_nc_ohc=KDrWhKdadx4AX9SilKU&_nc_ht=scontent.fhan4-3.fna&oh=00_AT__Lo84sx1SoiBGnKKxeKtmIQOv5lOnjVw7hmak4uWnCw&oe=6200C278",
       },
-      stores: [],
+      stores: [
+        {
+          id: 1,
+          types: "ao gi day",
+          size: "L",
+          quantity: "1",
+        },
+      ],
     },
   ],
-  user: null,
+  user: {
+    profile: {
+      nameSignIn: "",
+      name: "",
+      email: "",
+      numberPhone: "",
+      nameShop: "",
+      sex: "",
+      birth: "",
+      password: "",
+      address: "",
+      urlImage: "",
+    },
+    stores: [],
+  },
 };
 
 const productReducer = createSlice({
@@ -166,25 +189,33 @@ const userReducer = createSlice({
   name: "users",
   initialState: initialStateUsers,
   reducers: {
-    updateStore: (state, action: PayloadAction<typeStateStoreUserProps>) => {
+    updateClient: (state: typeUsersProps, action: PayloadAction<typeStateUserProps>) => {
       return {
         ...state,
-        store: [
-          state.users.stores.map(store =>
-            String(store.id) === String(action.payload.id) ? action.payload : store,
-          ),
-        ],
+        user: action.payload,
       };
     },
-
-    updateUser: (state, action: PayloadAction<typeStateProfileUserProps>) => {
+    getUser: (
+      state: typeUsersProps,
+      action: PayloadAction<{ nameSignIn: string; password: string }>,
+    ) => {
       return {
         ...state,
-        profile: action.payload,
+
+        user: state.users.find((user: typeStateUserProps) => {
+          return (
+            (String(user.profile.numberPhone) === String(action.payload.nameSignIn) &&
+              String(action.payload.password) === String(user.profile.password)) ||
+            (String(user.profile.email) === String(action.payload.nameSignIn) &&
+              String(action.payload.password) === String(user.profile.password))
+          );
+        }),
       };
     },
   },
 });
 
 export const { addProduct, getProduct } = productReducer.actions;
+export const { updateClient, getUser } = userReducer.actions;
+export const usersReducer = userReducer.reducer;
 export const productsReducer = productReducer.reducer;

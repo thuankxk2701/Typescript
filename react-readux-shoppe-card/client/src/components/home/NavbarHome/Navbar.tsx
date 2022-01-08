@@ -1,14 +1,40 @@
 import React from "react";
-import "./Navbar.scss";
 import { BsFacebook, BsInstagram, BsGlobe2 } from "react-icons/bs";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { BiHelpCircle } from "react-icons/bi";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../../redux/hook";
+import { updateClient } from "../../../redux/reducer";
 import product1 from "../../../assets/image/product1.jpg";
+import "./Navbar.scss";
 import Logo from "../../logo/Logo";
 const Navbar: React.FC = () => {
+  const user = useAppSelector(state => state.usersReducer.user);
+  const dispatch = useAppDispatch();
+
+  const handleSubmitSignUp = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(
+      updateClient({
+        profile: {
+          nameSignIn: "",
+          name: "",
+          email: "",
+          numberPhone: "",
+          nameShop: "",
+          sex: "",
+          birth: "",
+          password: "",
+          address: "",
+          urlImage: "",
+        },
+        stores: [],
+      }),
+    );
+  };
+
   return (
     <nav className="navbar__home">
       <div className="navbar__home--header">
@@ -40,17 +66,54 @@ const Navbar: React.FC = () => {
               <BsGlobe2 className="icon" />
               <span>Tiếng Việt</span>
             </li>
-
-            <li>
-              <Link to="/SignUp" className="link">
-                Đăng Ký
-              </Link>
-            </li>
-            <li>
-              <Link to="/SignIn" className="link">
-                Đăng Nhập
-              </Link>
-            </li>
+            {!user.profile.nameSignIn && (
+              <>
+                <li>
+                  <Link to="/SignUp" className="link">
+                    Đăng Ký
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/SignIn" className="link">
+                    Đăng Nhập
+                  </Link>
+                </li>
+              </>
+            )}
+            {user.profile.nameSignIn && (
+              <li className="navbar__home--header-box_right__user">
+                <div className="navbar__home--header-box_right__box">
+                  <img
+                    src={user.profile.urlImage}
+                    alt="img"
+                    className="navbar__home--header-box_right__image"
+                  />
+                  <span className="navbar__home--header-box_right__name">
+                    {user.profile.nameSignIn}
+                  </span>
+                  <form
+                    onSubmit={handleSubmitSignUp}
+                    className="navbar__home--header-box_right__switch"
+                  >
+                    <Link
+                      to="/user/profile"
+                      className="navbar__home--header-box_right__switch-account"
+                    >
+                      Tài khoản của tôi
+                    </Link>
+                    <Link to="/user/store" className="navbar__home--header-box_right__switch-store">
+                      Đơn Mua
+                    </Link>
+                    <button
+                      onSubmit={handleSubmitSignUp}
+                      className="navbar__home--header-box_right__switch-sign--out"
+                    >
+                      Đăng xuất
+                    </button>
+                  </form>
+                </div>
+              </li>
+            )}
           </ul>
         </div>
       </div>
