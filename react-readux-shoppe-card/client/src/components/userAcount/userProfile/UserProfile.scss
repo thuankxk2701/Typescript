@@ -1,5 +1,154 @@
 .user__description--profile{
     width: 94%;
     margin: 16px auto;
-    background-color:red;
+
+    &_contain{
+        padding-bottom: 18px;    
+        border-bottom: 1px solid #dadada;   
+
+        &__brief{
+            font-size: 18px;
+            color: #313131;
+            font-weight: 500;
+        }
+        &__manage{
+            font-size: 14px;
+            font-weight: 400;
+            color: #7c7c7c;
+          
+        }
+
+    }
+    &_change{
+        margin-top: 24px;
+        display: flex;
+
+        &__form{
+          
+            width: 68%;
+        }
+
+    }
+}
+.form{
+    
+    &__name--sign{
+        display: flex;
+        margin-bottom: 28px;
+    }
+    &__name--title{
+        width: 160px;
+        text-align: right;
+        color: rgba(85,85,85,.8);
+        font-weight: 400;
+        align-items: center;
+        margin-top: 4px;
+      
+    }
+    &__name--sign-in{
+        margin-left: 30px;
+        margin-top: 6px;
+        font-size: 14px;
+    }
+    &__name{
+          
+        display: flex;
+         
+    }
+    &__name--input{
+        margin-left: 30px;
+        border-radius: 2px;       
+        width: 60%;
+        height: 34px;
+        outline:  1px solid rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.1);
+        &:focus{          
+            outline:  1px solid rgba(0,0,0,0.25);
+            border: 1px solid rgba(0,0,0,0.25);
+        }
+      
+    }
+    &__email{
+        margin-top: 24px;
+        display: flex;
+    }
+    &__email--title{
+        width: 160px;
+        text-align: right;
+        color: rgba(85,85,85,.8);
+        font-weight: 400;
+        align-items: center;
+        margin-top: 4px;
+    }
+    &__email--text{
+        margin-left: 30px;
+        margin-top: 4px;
+        &-link{
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        & a{
+            text-decoration: none;
+        }
+    }
+    &__phone{
+        margin-top: 24px;
+        display: flex;
+    }
+    &__phone--title{
+        width: 160px;
+        text-align: right;
+        color: rgba(85,85,85,.8);
+        font-weight: 400;
+        align-items: center;
+        margin-top: 4px;
+    }
+    &__phone--text{
+        margin-left: 30px;
+        margin-top: 4px;
+        &-link{
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        & a{
+            text-decoration: none;
+        }
+    }
+    &__name--shope{
+        margin-top: 24px;
+        display: flex;
+    }
+    &__name--shope_title{
+        width: 160px;
+        text-align: right;
+        color: rgba(85,85,85,.8);
+        font-weight: 400;
+        align-items: center;
+        margin-top: 4px;
+      
+    }
+   &__sex{
+       margin-top: 24px;
+       display: flex;
+   }
+   &__sex--title{
+    width: 160px;
+    text-align: right;
+    color: rgba(85,85,85,.8);
+    font-weight: 400;
+    align-items: center;
+    margin-top: 4px;
+   }
+   &__sex--checkbox{
+       margin-left: 30px;
+   }
+}
+.form-check-input:checked {
+    background-color: #ee4d2d;
+    border-color: #ec3d3d;
+}
+.form-check-input:focus {
+    border-color: #ec3d3d;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(238, 15, 15, 0.473);
 }
