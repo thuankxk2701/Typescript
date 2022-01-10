@@ -1,16 +1,15 @@
 import React from "react";
-import Navbar from "../../home/NavbarHome/Navbar";
-import LoginFooter from "../../login/LoginFooter";
-import "./UserProfile.scss";
+import { typeStateUserProps } from "../../../redux/reducer";
 
-const UserProfile: React.FC = () => {
-  return (
-    <>
-      <Navbar />
-      <div className="user__profile">profile</div>
-      <LoginFooter />
-    </>
-  );
+import "./UserProfile.scss";
+interface userProfileProrps {
+  user: typeStateUserProps;
+}
+
+const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
+  console.log(user);
+
+  return <div className="user__description--profile">dasdas</div>;
 };
 
 export default UserProfile;
