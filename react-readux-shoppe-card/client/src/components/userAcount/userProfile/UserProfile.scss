@@ -58,7 +58,7 @@
     &__name--input{
         margin-left: 30px;
         border-radius: 2px;       
-        width: 60%;
+        width: 63.5%;
         height: 34px;
         outline:  1px solid rgba(0,0,0,0.1);
         border: 1px solid rgba(0,0,0,0.1);
@@ -142,7 +142,53 @@
    &__sex--checkbox{
        margin-left: 30px;
    }
+   &__born{
+    margin-top: 24px;
+    display: flex;
+
+   }
+   &__born--title{
+    width: 160px;
+    text-align: right;
+    color: rgba(85,85,85,.8);
+    font-weight: 400;
+    align-items: center;
+    margin-top: 4px;
+
+   }
+   &__born--select{
+    margin-left: 30px;
+    display: flex;
+  
+    & select{
+         &:not(:first-child){
+             margin-left: 10px;
+         }
+         
+        width: 120px;        
+        overflow-y: scroll;
+
+        scroll-behavior: smooth;
+        
+      
+        
+    }
+
+   }
+   &__button{
+       margin-top: 30px;
+       margin-left: 190px;
+       border: none;
+       padding: 6px 20px;
+       background-color: #ee4d2d;
+       color: #fff;
+       box-shadow: 0 0 4px rgba(0,0,0,0.2);
+       border-radius: 2px;
+
+   }
+ 
 }
+
 .form-check-input:checked {
     background-color: #ee4d2d;
     border-color: #ec3d3d;
@@ -151,4 +197,9 @@
     border-color: #ec3d3d;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(238, 15, 15, 0.473);
+}
+.form-select:focus {
+    border-color: rgba(0,0,0,0.4);
+    outline: none;
+    box-shadow:none;
 }

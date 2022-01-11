@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import { typeStateUserProps } from "../../../redux/reducer";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
+import { ListDay, ListMonth, ListYears } from "../../../redux/types";
 import "./UserProfile.scss";
 interface userProfileProrps {
   user: typeStateUserProps;
 }
 
 const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
-  console.log(user);
   const [nameUser, setNameUser] = useState<string>(user.profile.name);
   const [nameShope, setNameShope] = useState<string>(user.profile.nameShop);
   const [sex, setSex] = useState<string>(user.profile.sex);
   const placementSetSex = 1;
   const [dateBirth, monthBirth, yearsBirth] = user.profile.birth.split("-");
-  console.log(dateBirth, monthBirth, yearsBirth);
+  const [date, setDate] = useState<string>(dateBirth);
+  const [month, setMonth] = useState<string>(monthBirth);
+  const [years, setYears] = useState<string>(yearsBirth);
 
   return (
     <div className="user__description--profile">
@@ -136,16 +138,41 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
             <div className="form__born--title">Ngày Sinh</div>
             <div className="form__born--select">
               <Form.Select
-                onChange={e => console.log(e.target.value)}
+                onChange={e => setDate(e.target.value)}
                 aria-label="Default select example"
+                value={date}
               >
-                <option value="0">Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                {ListDay.map((day, index) => (
+                  <option key={index} value={day}>
+                    {day}
+                  </option>
+                ))}
+              </Form.Select>
+              <Form.Select
+                onChange={e => setMonth(e.target.value)}
+                aria-label="Default select example"
+                value={month}
+              >
+                {ListMonth.map((month, index) => (
+                  <option key={index} value={month}>
+                    Tháng {month}
+                  </option>
+                ))}
+              </Form.Select>
+              <Form.Select
+                onChange={e => setYears(e.target.value)}
+                aria-label="Default select example"
+                value={years}
+              >
+                {ListYears.map((year, index) => (
+                  <option key={index} value={year}>
+                    {year}
+                  </option>
+                ))}
               </Form.Select>
             </div>
           </div>
+          <button className="form__button">Lưu</button>
         </form>
         <div className="user__description--profile_change__image">img</div>
       </div>
