@@ -4,7 +4,7 @@ import SignIn from "./components/signIn/SignIn";
 import SignUp from "./components/signUp/SignUp";
 import Home from "./components/home/Home";
 import Product from "./components/product/Product";
-import UserAccount from "./components/userAcount/UserAccount";
+import UserAccount from "./components/userAccount/UserAccount";
 
 const App: React.FC = () => {
   return (

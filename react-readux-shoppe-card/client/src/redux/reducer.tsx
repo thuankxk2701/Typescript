@@ -201,7 +201,6 @@ const userReducer = createSlice({
     ) => {
       return {
         ...state,
-
         user: state.users.find((user: typeStateUserProps) => {
           return (
             (String(user.profile.numberPhone) === String(action.payload.nameSignIn) &&

@@ -3,12 +3,15 @@ import { typeStateUserProps } from "../../../redux/reducer";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { ListDay, ListMonth, ListYears } from "../../../redux/types";
+import { updateClient } from "../../../redux/reducer";
+import { useAppDispatch } from "../../../redux/hook";
 import "./UserProfile.scss";
 interface userProfileProrps {
   user: typeStateUserProps;
 }
 
 const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
+  const dispatch = useAppDispatch();
   const [nameUser, setNameUser] = useState<string>(user.profile.name);
   const [nameShope, setNameShope] = useState<string>(user.profile.nameShop);
   const [sex, setSex] = useState<string>(user.profile.sex);
@@ -17,6 +20,28 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
   const [date, setDate] = useState<string>(dateBirth);
   const [month, setMonth] = useState<string>(monthBirth);
   const [years, setYears] = useState<string>(yearsBirth);
+  const [urlImage, setUrlImage] = useState<string>(user.profile.urlImage);
+
+  const handleUpdateUser = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(
+      updateClient({
+        profile: {
+          nameSignIn: user.profile.nameSignIn,
+          name: nameUser,
+          email: user.profile.email,
+          numberPhone: user.profile.numberPhone,
+          nameShop: nameShope,
+          sex: sex,
+          birth: [date, month, years].join("-"),
+          password: user.profile.password,
+          address: user.profile.address,
+          urlImage: urlImage,
+        },
+        stores: user.stores,
+      }),
+    );
+  };
 
   return (
     <div className="user__description--profile">
@@ -27,7 +52,7 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
         </div>
       </div>
       <div className="user__description--profile_change">
-        <form className="user__description--profile_change__form">
+        <form onSubmit={handleUpdateUser} className="user__description--profile_change__form">
           <div className="form__name--sign">
             <div className="form__name--title">Tên Đăng Nhập</div>
             <span className="form__name--sign-in">{user.profile.nameSignIn}</span>
@@ -174,7 +199,24 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
           </div>
           <button className="form__button">Lưu</button>
         </form>
-        <div className="user__description--profile_change__image">img</div>
+        <div className="user__description--profile_change__image">
+          <div className="profile__box">
+            <img src={urlImage} alt="urlImage" className="profile__box--image" />
+
+            <label className="profile__box--file" htmlFor="profile__file">
+              Chọn Ảnh
+            </label>
+            <input
+              id="profile__file"
+              type="file"
+              accept="image/png, image/jpeg,image/jpg"
+              style={{ display: "none" }}
+            />
+            <div className="profile__box--text">
+              Dụng lượng file tối đa 1 MB Định dạng:.JPEG, .PNG
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

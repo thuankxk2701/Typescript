@@ -6,7 +6,6 @@ import { AiFillApple } from "react-icons/ai";
 import { Link, useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { getUser } from "../../redux/reducer";
-import { typeStateUserProps, typeUsersProps } from "../../redux/reducer";
 
 interface loginMainProps {
   types: string;
@@ -24,7 +23,7 @@ const LoginMain: React.FC<loginMainProps> = ({ types }) => {
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const handSubmitSignIn = (e: React.FormEvent) => {
+  const handSubmitSignIn = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (nameSignIn.trim() !== "" && password.trim() !== "")
       dispatch(getUser({ nameSignIn: nameSignIn, password: password }));
@@ -61,9 +60,7 @@ const LoginMain: React.FC<loginMainProps> = ({ types }) => {
               className="login__main--right-input_password"
               onChange={handlePassword}
             />
-            <button onSubmit={handSubmitSignIn} className="login__main--right-next">
-              {types}
-            </button>
+            <button className="login__main--right-next">{types}</button>
             <div className="login__main--right-support">
               <a href="#1">Quên mật khẩu</a>
               <a href="#1">Đăng nhập với SMS</a>
