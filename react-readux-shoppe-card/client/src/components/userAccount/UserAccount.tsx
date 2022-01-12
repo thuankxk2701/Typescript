@@ -3,16 +3,16 @@ import Navbar from "../home/NavbarHome/Navbar";
 import LoginFooter from "../login/LoginFooter";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { BsPerson, BsPencil } from "react-icons/bs";
-import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { useAppSelector } from "../../redux/hook";
 import classNames from "classnames";
 import { MdOutlineEventNote } from "react-icons/md";
 import UserProfile from "./userProfile/UserProfile";
+import UserPassword from "./userFormConvert/UserFormConvert";
 import "./UserAccount.scss";
 
 const UserAccount: React.FC = () => {
   const user = useAppSelector(state => state.usersReducer.user);
 
-  const dispatch = useAppDispatch();
   const { title } = useParams<any>();
   const history = useHistory();
 
@@ -99,6 +99,9 @@ const UserAccount: React.FC = () => {
           </div>
           <div className="user__description">
             {title === "profile" && <UserProfile user={user} />}
+            {title === "password" && <UserPassword types={title} user={user} />}
+            {title === "email" && <UserPassword types={title} user={user} />}
+            {title === "phone" && <UserPassword types={title} user={user} />}
           </div>
         </div>
       </div>

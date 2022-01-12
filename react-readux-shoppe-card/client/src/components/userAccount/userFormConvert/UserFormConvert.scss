@@ -1,0 +1,63 @@
+.user__description--convert{
+    padding: 10px 40px;
+    &-header{
+        padding-bottom: 2px;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+
+        & h4{
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
+        }
+        & p{
+            font-size: 14px;
+            color: #7c7c7c;
+            margin-top: 4px;
+        }
+    }
+    &-form{
+        margin-top: 20px;
+        
+        &_new{
+            margin-top: 34px;
+            display: flex;
+        }
+        &_confluent{
+            margin-top: 30px;
+         display: flex;
+        }
+        &_title{
+            width: 200px;
+            text-align: end;
+            color: #7c7c7c;
+            margin-top: 6px;
+            
+            
+        }
+        &_input{
+            padding-left: 4px;
+            margin-left: 24px;
+            width: 38%;
+            height: 34px;
+            color: #292929;
+            outline:  1px solid rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.1);
+            &:focus{          
+                outline:  1px solid rgba(0,0,0,0.25);
+                border: 1px solid rgba(0,0,0,0.25);
+            }
+        }
+        &_button{
+            border: none;
+            outline: none;
+            margin-top: 24px;
+            padding: 6px 20px;
+            margin-left: 38%;
+            background-color: #ee4d2d;
+            color: #fff;
+            box-shadow: 0 0 4px rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+    }
+
+}

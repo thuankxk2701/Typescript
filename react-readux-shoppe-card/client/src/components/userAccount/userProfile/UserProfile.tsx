@@ -3,7 +3,7 @@ import { typeStateUserProps } from "../../../redux/reducer";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { ListDay, ListMonth, ListYears } from "../../../redux/types";
-import { updateClient } from "../../../redux/reducer";
+import { updateUser, updateClient } from "../../../redux/reducer";
 import { useAppDispatch } from "../../../redux/hook";
 import "./UserProfile.scss";
 interface userProfileProrps {
@@ -25,7 +25,7 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
   const handleUpdateUser = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(
-      updateClient({
+      updateUser({
         profile: {
           nameSignIn: user.profile.nameSignIn,
           name: nameUser,
@@ -41,6 +41,7 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
         stores: user.stores,
       }),
     );
+    dispatch(updateClient({ nameSignIn: user.profile.nameSignIn }));
   };
 
   return (

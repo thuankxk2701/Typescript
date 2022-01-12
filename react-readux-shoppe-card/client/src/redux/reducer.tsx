@@ -128,7 +128,7 @@ const initialStateUsers: typeUsersProps = {
   users: [
     {
       profile: {
-        nameSignIn: "randomName131",
+        nameSignIn: "random",
         name: "",
         email: "ttctde@gmail.com",
         numberPhone: "0912207142",
@@ -189,7 +189,7 @@ const userReducer = createSlice({
   name: "users",
   initialState: initialStateUsers,
   reducers: {
-    updateClient: (state: typeUsersProps, action: PayloadAction<typeStateUserProps>) => {
+    updateUser: (state: typeUsersProps, action: PayloadAction<typeStateUserProps>) => {
       return {
         ...state,
         user: action.payload,
@@ -203,18 +203,24 @@ const userReducer = createSlice({
         ...state,
         user: state.users.find((user: typeStateUserProps) => {
           return (
-            (String(user.profile.numberPhone) === String(action.payload.nameSignIn) &&
-              String(action.payload.password) === String(user.profile.password)) ||
-            (String(user.profile.email) === String(action.payload.nameSignIn) &&
-              String(action.payload.password) === String(user.profile.password))
+            String(user.profile.nameSignIn) === String(action.payload.nameSignIn) &&
+            String(action.payload.password) === String(user.profile.password)
           );
         }),
+      };
+    },
+    updateClient: (state: typeUsersProps, action: PayloadAction<{ nameSignIn: string }>) => {
+      return {
+        ...state,
+        users: state.users.map((user: typeStateUserProps) =>
+          String(user.profile.nameSignIn) === String(action.payload.nameSignIn) ? state.user : user,
+        ),
       };
     },
   },
 });
 
 export const { addProduct, getProduct } = productReducer.actions;
-export const { updateClient, getUser } = userReducer.actions;
+export const { updateUser, getUser, updateClient } = userReducer.actions;
 export const usersReducer = userReducer.reducer;
 export const productsReducer = productReducer.reducer;

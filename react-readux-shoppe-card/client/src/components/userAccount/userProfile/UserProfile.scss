@@ -59,10 +59,12 @@
          
     }
     &__name--input{
+        padding-left: 4px;
         margin-left: 30px;
         border-radius: 2px;       
         width: 68%;
         height: 34px;
+        color: #292929;
         outline:  1px solid rgba(0,0,0,0.1);
         border: 1px solid rgba(0,0,0,0.1);
         &:focus{          

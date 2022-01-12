@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../redux/hook";
-import { updateClient } from "../../../redux/reducer";
+import { updateUser } from "../../../redux/reducer";
 import product1 from "../../../assets/image/product1.jpg";
 import "./Navbar.scss";
 import Logo from "../../logo/Logo";
@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
   const handleSubmitSignUp = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(
-      updateClient({
+      updateUser({
         profile: {
           nameSignIn: "",
           name: "",

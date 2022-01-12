@@ -28,7 +28,7 @@ const LoginMain: React.FC<loginMainProps> = ({ types }) => {
     if (nameSignIn.trim() !== "" && password.trim() !== "")
       dispatch(getUser({ nameSignIn: nameSignIn, password: password }));
   };
-  if (user.profile.nameSignIn !== "") {
+  if (user?.profile?.nameSignIn) {
     history.push("/");
   }
 
