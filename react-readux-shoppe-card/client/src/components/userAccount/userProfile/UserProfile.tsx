@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import { ListDay, ListMonth, ListYears } from "../../../redux/types";
 import { updateUser, updateClient } from "../../../redux/reducer";
 import { useAppDispatch } from "../../../redux/hook";
+import { API_URL } from "../../../redux/types";
+import { postFilePostImage } from "../../../redux/action";
 import "./UserProfile.scss";
 interface userProfileProrps {
   user: typeStateUserProps;
@@ -22,8 +24,27 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
   const [years, setYears] = useState<string>(yearsBirth);
   const [urlImage, setUrlImage] = useState<string>(user.profile.urlImage);
 
+  const handleFileImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      if (!e.target.files) return;
+      const fileImage = e.target.files[0];
+      const formData = new FormData();
+      formData.append("file", fileImage);
+      postFilePostImage(formData);
+      setTimeout(() => {
+        setUrlImage(API_URL + "uploads/" + String(fileImage.name));
+      }, 1000);
+    } catch (error: any) {
+      throw new Error(error);
+    }
+  };
+
   const handleUpdateUser = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const isYears =
+      (Number(years) % 4 === 0 && Number(years) % 100 !== 0) || Number(years) % 400 === 0;
+    console.log(isYears);
+
     dispatch(
       updateUser({
         profile: {
@@ -208,6 +229,7 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
               Chọn Ảnh
             </label>
             <input
+              onChange={handleFileImage}
               id="profile__file"
               type="file"
               accept="image/png, image/jpeg,image/jpg"

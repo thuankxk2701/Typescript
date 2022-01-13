@@ -50,6 +50,8 @@ const UserPassword: React.FC<userProfileProps> = ({ types, user }) => {
   };
   const handleConvertSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(2);
+    
     if (types === "password") {
       if (password.trim() === "") {
         toast.warn("Vui Lòng Nhập Mật Khẩu Mới ", {

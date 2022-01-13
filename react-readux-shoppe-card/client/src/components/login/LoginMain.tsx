@@ -13,7 +13,7 @@ interface loginMainProps {
 }
 
 const LoginMain: React.FC<loginMainProps> = ({ types }) => {
-  const user = useAppSelector(state => state.usersReducer.user);
+  const users = useAppSelector(state => state.usersReducer.users);
   const history = useHistory();
   const [nameSignIn, setNameSignIn] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -26,6 +26,7 @@ const LoginMain: React.FC<loginMainProps> = ({ types }) => {
   };
   const handSubmitSignIn = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (nameSignIn.trim() === "") {
       toast.warn("Vui Lòng Nhập Tài Khoản", {
         position: "top-right",
@@ -50,15 +51,30 @@ const LoginMain: React.FC<loginMainProps> = ({ types }) => {
       });
       return;
     }
+    const account = users.find(user => {
+      if (user.profile.password === password && user.profile.nameSignIn === nameSignIn) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    if (!account) {
+      toast.error("Vui Lòng Kiểm Tra Tài Khoản Hoặc Mật Khẩu", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
     if (nameSignIn.trim() !== "" && password.trim() !== "")
       dispatch(getUser({ nameSignIn: nameSignIn, password: password }));
-  };
-
-  if (user?.profile?.nameSignIn) {
     history.push("/");
-  } else {
-    console.log(1);
-  }
+  };
+ 
 
   return (
     <div className="login__main">
