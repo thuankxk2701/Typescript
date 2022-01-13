@@ -3,6 +3,7 @@ import { typeStateUserProps, updateClient, updateUser } from "../../../redux/red
 import { useAppDispatch } from "../../../redux/hook";
 import "./UserFormConvert.scss";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface userProfileProps {
   user: typeStateUserProps;
@@ -12,53 +13,161 @@ interface userProfileProps {
 const UserPassword: React.FC<userProfileProps> = ({ types, user }) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
-  const [inputFirst, setInputFirst] = useState<string>("");
-  const [inputSecond, setInputSecond] = useState<string>("");
+  const [oldNumberPhone, setOldNumberPhone] = useState<string>("");
+  const [newNumberPhone, setNewNumberPhone] = useState<string>("");
+  const [oldEmail, setOldEmail] = useState<string>("");
+  const [newEmail, setNewEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConFirmPassword] = useState<string>("");
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const password = e.target.value;
+    if (e.target.name === "password") {
+      setPassword(password);
+    }
+    if (e.target.name === "confirmPassword") {
+      setConFirmPassword(password);
+    }
+  };
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const email = e.target.value;
+    if (e.target.name === "oldEmail") {
+      setOldEmail(email);
+    }
+    if (e.target.name === "newEmail") {
+      setNewEmail(email);
+    }
+  };
+  const handleChangeNumberPhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const phone = e.target.value;
+    if (e.target.name === "oldNumberPhone") {
+      if (!Number(phone) && phone !== "" && phone !== "0") return;
+      if (phone.length <= 11) setOldNumberPhone(phone);
+    }
+    if (e.target.name === "newNumberPhone") {
+      if (!Number(phone) && phone !== "" && phone !== "0") return;
+      if (phone.length <= 11) setNewNumberPhone(phone);
+    }
+  };
   const handleConvertSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (types === "password") {
-      if (inputFirst === inputSecond) {
+      if (password.trim() === "") {
+        toast.warn("Vui Lòng Nhập Mật Khẩu Mới ", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        return;
+      }
+      if (password === confirmPassword) {
         dispatch(
           updateUser({
             profile: {
               ...user.profile,
-              password: inputSecond,
+              password: password,
             },
             stores: user.stores,
           }),
         );
         dispatch(updateClient({ nameSignIn: user.profile.nameSignIn }));
-        history.push("/user/account/profile");
+        toast.success("Thay Đổi Mật Khẩu Thành Công", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          history.push("/user/account/profile");
+        }, 1500);
+      } else {
+        toast.warn("Mật Khẩu Không Chùng Khớp", {
+          position: "top-right",
+          autoClose: 1200,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
     if (types === "email") {
-      if (inputFirst === user.profile.email) {
+      if (oldEmail === user.profile.email) {
         dispatch(
           updateUser({
             profile: {
               ...user.profile,
-              email: inputSecond,
+              email: newEmail,
             },
             stores: user.stores,
           }),
         );
         dispatch(updateClient({ nameSignIn: user.profile.nameSignIn }));
-        history.push("/user/account/profile");
+        toast.success("Thay Đổi Email Thành Công", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          history.push("/user/account/profile");
+        }, 1500);
+      } else {
+        toast.error("Email Không Chính Sác", {
+          position: "top-right",
+          autoClose: 1200,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
     if (types === "phone") {
-      if (inputFirst === user.profile.numberPhone) {
+      if (oldNumberPhone === user.profile.numberPhone) {
         dispatch(
           updateUser({
             profile: {
               ...user.profile,
-              numberPhone: inputSecond,
+              numberPhone: newNumberPhone,
             },
             stores: user.stores,
           }),
         );
         dispatch(updateClient({ nameSignIn: user.profile.nameSignIn }));
-        history.push("/user/account/profile");
+        toast.success("Thay Đổi Số Điện Thoại Thành Công", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          history.push("/user/account/profile");
+        }, 1500);
+      } else {
+        toast.error("Số Điện Không Chính Sác", {
+          position: "top-right",
+          autoClose: 1200,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
   };
@@ -92,8 +201,9 @@ const UserPassword: React.FC<userProfileProps> = ({ types, user }) => {
               <div className="user__description--convert-form_title">Mật Khẩu Mới</div>
               <input
                 type="password"
-                value={inputFirst}
-                onChange={e => setInputFirst(e.target.value)}
+                name="password"
+                value={password}
+                onChange={handleChangePassword}
                 className="user__description--convert-form_input"
               />
             </div>
@@ -101,8 +211,9 @@ const UserPassword: React.FC<userProfileProps> = ({ types, user }) => {
               <div className="user__description--convert-form_title">Nhập Lại Mật Khẩu</div>
               <input
                 type="password"
-                value={inputSecond}
-                onChange={e => setInputSecond(e.target.value)}
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={handleChangePassword}
                 className="user__description--convert-form_input"
               />
             </div>
@@ -115,8 +226,9 @@ const UserPassword: React.FC<userProfileProps> = ({ types, user }) => {
               <div className="user__description--convert-form_title">Nhập Email Cũ </div>
               <input
                 type="email"
-                value={inputFirst}
-                onChange={e => setInputFirst(e.target.value)}
+                name="oldEmail"
+                value={oldEmail}
+                onChange={handleChangeEmail}
                 className="user__description--convert-form_input"
               />
             </div>
@@ -124,8 +236,9 @@ const UserPassword: React.FC<userProfileProps> = ({ types, user }) => {
               <div className="user__description--convert-form_title">Nhập Email Mới</div>
               <input
                 type="email"
-                value={inputSecond}
-                onChange={e => setInputSecond(e.target.value)}
+                name="newEmail"
+                value={newEmail}
+                onChange={handleChangeEmail}
                 className="user__description--convert-form_input"
               />
             </div>
@@ -138,8 +251,9 @@ const UserPassword: React.FC<userProfileProps> = ({ types, user }) => {
               <div className="user__description--convert-form_title">Nhập Số Điện Thoại Cũ </div>
               <input
                 type="text"
-                value={inputFirst}
-                onChange={e => setInputFirst(e.target.value)}
+                value={oldNumberPhone}
+                name="oldNumberPhone"
+                onChange={handleChangeNumberPhone}
                 className="user__description--convert-form_input"
               />
             </div>
@@ -147,8 +261,9 @@ const UserPassword: React.FC<userProfileProps> = ({ types, user }) => {
               <div className="user__description--convert-form_title">Nhập Số Điện Thoại Mới</div>
               <input
                 type="text"
-                value={inputSecond}
-                onChange={e => setInputSecond(e.target.value)}
+                name="newNumberPhone"
+                value={newNumberPhone}
+                onChange={handleChangeNumberPhone}
                 className="user__description--convert-form_input"
               />
             </div>
