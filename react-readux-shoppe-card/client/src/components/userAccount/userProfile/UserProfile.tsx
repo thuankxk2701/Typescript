@@ -7,6 +7,7 @@ import { updateUser, updateClient } from "../../../redux/reducer";
 import { useAppDispatch } from "../../../redux/hook";
 import { API_URL } from "../../../redux/types";
 import { postFilePostImage } from "../../../redux/action";
+import { toast } from "react-toastify";
 import "./UserProfile.scss";
 interface userProfileProrps {
   user: typeStateUserProps;
@@ -43,8 +44,76 @@ const UserProfile: React.FC<userProfileProrps> = ({ user }) => {
     e.preventDefault();
     const isYears =
       (Number(years) % 4 === 0 && Number(years) % 100 !== 0) || Number(years) % 400 === 0;
-    console.log(isYears);
-
+    if (isYears) {
+      if (["2", "4", "6", "9", "11"].indexOf(month) !== -1) {
+        if (month === "2") {
+          if (Number(date) > 29) {
+            toast.warn("Ngày Sinh Không Hợp Lệ Vui Lòng Nhập Lại", {
+              position: "top-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            return;
+          }
+        } else {
+          if (Number(date) > 30) {
+            toast.warn("Ngày Sinh Không Hợp Lệ Vui Lòng Nhập Lại", {
+              position: "top-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            return;
+          }
+        }
+      }
+    } else {
+      if (["2", "4", "6", "9", "11"].indexOf(month) !== -1) {
+        if (month === "2") {
+          if (Number(date) > 28) {
+            toast.warn("Ngày Sinh Không Hợp Lệ Vui Lòng Nhập Lại", {
+              position: "top-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            return;
+          }
+        } else {
+          if (Number(date) > 30) {
+            toast.warn("Ngày Sinh Không Hợp Lệ Vui Lòng Nhập Lại", {
+              position: "top-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            return;
+          }
+        }
+      }
+    }
+    toast.success("Cập Nhập Tài Khoản Thành Công", {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     dispatch(
       updateUser({
         profile: {
