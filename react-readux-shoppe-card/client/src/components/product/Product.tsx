@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Navbar from "../home/NavbarHome/Navbar";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../redux/reducer";
-import { typesInitialStateProps } from "../../redux/reducer";
+import { typesInitialStateProductProps } from "../../redux/reducer";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import Spinner from "react-bootstrap/Spinner";
 import ProductMainCarousel from "./productMainCarousel/ProductMainCarousel";

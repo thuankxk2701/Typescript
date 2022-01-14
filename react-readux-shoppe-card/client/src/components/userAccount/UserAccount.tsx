@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../home/NavbarHome/Navbar";
 import LoginFooter from "../login/LoginFooter";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { BsPerson, BsPencil } from "react-icons/bs";
+import { BsPerson, BsPencil, BsCart4 } from "react-icons/bs";
 import { useAppSelector } from "../../redux/hook";
 import classNames from "classnames";
 import { MdOutlineEventNote } from "react-icons/md";
@@ -86,7 +86,6 @@ const UserAccount: React.FC = () => {
               <div className="user__nav--purchase-icon">
                 <MdOutlineEventNote className="icon" />
               </div>
-
               <Link
                 to="/user/account/purchase"
                 className={classNames("user__nav--purchase-link", {
@@ -94,6 +93,19 @@ const UserAccount: React.FC = () => {
                 })}
               >
                 Đơn Mua
+              </Link>
+            </div>
+            <div className="user__nav--store">
+              <div className="user__nav--store-icon">
+                <BsCart4 className="icon" />
+              </div>
+              <Link
+                to="/user/account/store"
+                className={classNames("user__nav--store-link", {
+                  active: String(title) === "store",
+                })}
+              >
+                Store
               </Link>
             </div>
           </div>

@@ -12,6 +12,9 @@ import "./Navbar.scss";
 import Logo from "../../logo/Logo";
 const Navbar: React.FC = () => {
   const user = useAppSelector(state => state.usersReducer.user);
+  const productUser = useAppSelector(state => state.productsReducer.productUser);
+  console.log(productUser);
+
   const dispatch = useAppDispatch();
 
   const handleSubmitSignUp = (e: React.FormEvent) => {
@@ -102,7 +105,7 @@ const Navbar: React.FC = () => {
                       Tài khoản của tôi
                     </Link>
                     <Link
-                      to="/user/account/store"
+                      to="/user/account/purchase"
                       className="navbar__home--header-box_right__switch-store"
                     >
                       Đơn Mua
@@ -162,7 +165,9 @@ const Navbar: React.FC = () => {
         <div className="navbar__home--footer-store">
           <div className="navbar__home--footer-store_box">
             <MdOutlineLocalGroceryStore className="icon" />
-            {/* <div className="navbar__home--footer-store_box__products no__product"></div> */}
+            {user.stores.lenth === 0 && (
+              <div className="navbar__home--footer-store_box__products no__product"></div>
+            )}
             <div className="navbar__home--footer-store_box__products list__product">
               <ul>
                 <li>
