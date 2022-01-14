@@ -249,17 +249,40 @@
             }
         }
     }
+    &-form{
+        margin-top: 20px;
+        &_type{
+            display: flex;
+            &__title{
+                color:rgb(148, 141, 141);
+                margin-top: 6px;
+                margin-right: 60px;
+            }
+        }
+        &_size{
+            display: flex;
+            margin-top: 20px;
+            &__title{
+                color:rgb(148, 141, 141);
+                margin-top: 6px;
+                margin-right:35px;
+            }
+        }
+    }
 
 }
 .form__chose{
     display: flex;
     &:not(:first-child){
-        margin-left: 10px;
+        margin-left: 20px;
     }
 }
 .form__chose--label{
-    border: 1px solid rgb(180, 180, 180);
+    border: 1px solid rgb(212, 212, 212);
     padding: 4px 8px;
+    min-width: 70px;
+    text-align: center;
+    color: rgb(125, 125, 125);
     position: relative;
     overflow: hidden;
     cursor: pointer;

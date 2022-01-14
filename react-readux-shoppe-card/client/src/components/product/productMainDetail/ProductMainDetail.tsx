@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { BsStarFill } from "react-icons/bs";
+import { BsStarFill, BsDash, BsPlus } from "react-icons/bs";
 import LogoFree from "../../logo/LogoFree";
 import { FaCarSide } from "react-icons/fa";
+
 import "./ProductMainDetail.scss";
 
 interface typeProductDetailProps {
@@ -29,8 +30,20 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
   sizes,
 }) => {
   const [placementInputTypes, setPlacementInputTypes] = useState<number>(-1);
+  const [placementInputSizes, setPlacementInputSizes] = useState<number>(-1);
+  const [amount, setAmount] = useState<number>(1);
+  const handleAmountDecrement = (e: React.ChangeEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log(e.target);
+
+    setAmount(amount - 1);
+  };
+
   const handleChangeInputTypes = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked ? setPlacementInputTypes(Number(e.target.name)) : setPlacementInputTypes(-1);
+  };
+  const handleChangeInputSizes = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.checked ? setPlacementInputSizes(Number(e.target.name)) : setPlacementInputSizes(-1);
   };
 
   return (
@@ -193,8 +206,39 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
             </div>
           ))}
         </div>
-        <div className="product__main--detail-form_size"></div>
-        <div className="product__main--detail-form_quantity"></div>
+        <div className="product__main--detail-form_size">
+          <div className="product__main--detail-form_size__title">Kích Cỡ</div>
+          {sizes.map((type, index) => (
+            <div key={index} className="form__chose">
+              <input
+                type="checkbox"
+                name={String(index)}
+                id={type}
+                checked={placementInputSizes === index}
+                className="form__chose--input"
+                onChange={handleChangeInputSizes}
+              />
+              <label htmlFor={type} className="form__chose--label">
+                {type}
+              </label>
+            </div>
+          ))}
+        </div>
+        <div className="product__main--detail-form_quantity">
+          <div className="product__main--detail-form_quantity__title">Số Lượng</div>
+        </div>
+        <div className="product__main--detail-form_quantity__count">
+          <button
+            onChange={() => handleAmountDecrement}
+            className="product__main--detail-form_quantity__count-decrease"
+          >
+            <BsDash />
+          </button>
+          <span className="product__main--detail-form_quantity__count-amount">1</span>
+          <button className="product__main--detail-form_quantity__count-decrease">
+            <BsPlus />
+          </button>
+        </div>
         <div className="product__main--detail-form_add"></div>
       </form>
     </>

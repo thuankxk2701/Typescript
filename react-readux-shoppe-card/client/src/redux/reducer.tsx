@@ -41,6 +41,12 @@ export interface stateAllProductProps {
     productDescription: string;
   };
 }
+export interface CounterStateProps {
+  counter: number;
+}
+const initialStateCount: CounterStateProps = {
+  counter: 1,
+};
 export interface typesInitialStateProductProps {
   products: stateAllProductProps[];
   productUser: stateAllProductProps[];
@@ -168,7 +174,22 @@ const initialStateUsers: typeUsersProps = {
     stores: [],
   },
 };
-
+const countReducer = createSlice({
+  name: "count",
+  initialState: initialStateCount,
+  reducers: {
+    decrement: (state, action: PayloadAction<number>) => {
+      return {
+        counter: state.counter > 0 ? state.counter - 1 : state.counter,
+      };
+    },
+    increment: (state, action: PayloadAction<number>) => {
+      return {
+        counter: state.counter < action.payload ? state.counter + 1 : state.counter,
+      };
+    },
+  },
+});
 const productReducer = createSlice({
   name: "products",
   initialState: initialStateProducts,
@@ -230,5 +251,7 @@ const userReducer = createSlice({
 
 export const { addProduct, updateProductUser, getProduct } = productReducer.actions;
 export const { updateUser, getUser, updateClient } = userReducer.actions;
+export const { decrement, increment } = countReducer.actions;
 export const usersReducer = userReducer.reducer;
 export const productsReducer = productReducer.reducer;
+export const countsReducer = countReducer.reducer;
