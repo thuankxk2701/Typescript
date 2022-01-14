@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsStarFill } from "react-icons/bs";
 import LogoFree from "../../logo/LogoFree";
 import { FaCarSide } from "react-icons/fa";
@@ -14,6 +14,7 @@ interface typeProductDetailProps {
   peopleBought: number;
   quantity: number;
   discount: number;
+  sizes: string[];
 }
 const ProductMainDetail: React.FC<typeProductDetailProps> = ({
   discount,
@@ -25,7 +26,13 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
   peopleRate,
   peopleBought,
   quantity,
+  sizes,
 }) => {
+  const [placementInputTypes, setPlacementInputTypes] = useState<number>(-1);
+  const handleChangeInputTypes = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.checked ? setPlacementInputTypes(Number(e.target.name)) : setPlacementInputTypes(-1);
+  };
+
   return (
     <>
       <div className="product__main--detail-content">
@@ -170,6 +177,21 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
       <form className="product__main--detail-form">
         <div className="product__main--detail-form_type">
           <div className="product__main--detail-form_type__title">Loại</div>
+          {types.map((type, index) => (
+            <div key={index} className="form__chose">
+              <input
+                type="checkbox"
+                name={String(index)}
+                id={type}
+                checked={placementInputTypes === index}
+                className="form__chose--input"
+                onChange={handleChangeInputTypes}
+              />
+              <label htmlFor={type} className="form__chose--label">
+                {type}
+              </label>
+            </div>
+          ))}
         </div>
         <div className="product__main--detail-form_size"></div>
         <div className="product__main--detail-form_quantity"></div>

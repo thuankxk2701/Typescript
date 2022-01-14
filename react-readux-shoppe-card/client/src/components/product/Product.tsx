@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Navbar from "../home/NavbarHome/Navbar";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../redux/reducer";
-import { typesInitialStateProductProps } from "../../redux/reducer";
+
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import Spinner from "react-bootstrap/Spinner";
 import ProductMainCarousel from "./productMainCarousel/ProductMainCarousel";
@@ -17,7 +17,6 @@ const Product: React.FC = () => {
   }, []);
 
   const { id } = useParams<any>();
-  console.log(product);
 
   if (!product) {
     return (
@@ -53,6 +52,7 @@ const Product: React.FC = () => {
             peopleRate={product.peopleRate}
             peopleBought={product.peopleBought}
             quantity={product.quantity}
+            sizes={product.sizes}
           />
         </div>
       </div>

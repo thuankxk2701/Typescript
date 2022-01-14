@@ -13,7 +13,7 @@ export interface stateAllProductProps {
   price: number[];
   discount: number;
   types: string[];
-  size: string[];
+  sizes: string[];
   quantity: number;
   numberOfFavorites: number;
   owner: {
@@ -67,7 +67,7 @@ const initialStateProducts: typesInitialStateProductProps = {
       price: [145.0, 160.0, 240.0, 300.0],
       discount: 25,
       types: ["Cả set", "Váy lẻ", "Lẻ áo cardigan"],
-      size: ["XS", "S", "M", "L"],
+      sizes: ["XS", "S", "M", "L"],
       quantity: 1176,
       numberOfFavorites: 23400,
       owner: {

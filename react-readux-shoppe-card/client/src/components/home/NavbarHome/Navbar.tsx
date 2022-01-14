@@ -6,14 +6,13 @@ import { FaSearch } from "react-icons/fa";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../redux/hook";
-import { updateUser } from "../../../redux/reducer";
+import { updateUser, updateProductUser } from "../../../redux/reducer";
 import product1 from "../../../assets/image/product1.jpg";
 import "./Navbar.scss";
 import Logo from "../../logo/Logo";
 const Navbar: React.FC = () => {
   const user = useAppSelector(state => state.usersReducer.user);
   const productUser = useAppSelector(state => state.productsReducer.productUser);
-  console.log(productUser);
 
   const dispatch = useAppDispatch();
 
@@ -36,6 +35,7 @@ const Navbar: React.FC = () => {
         stores: [],
       }),
     );
+    dispatch(updateProductUser([]));
   };
 
   return (
@@ -165,23 +165,74 @@ const Navbar: React.FC = () => {
         <div className="navbar__home--footer-store">
           <div className="navbar__home--footer-store_box">
             <MdOutlineLocalGroceryStore className="icon" />
-            {user.stores.lenth === 0 && (
+            {productUser.length === 0 && (
               <div className="navbar__home--footer-store_box__products no__product"></div>
             )}
-            <div className="navbar__home--footer-store_box__products list__product">
-              <ul>
-                <li>
-                  <a href="#1">
-                    <img src={product1} alt="Product1" />
-                    <span>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem minima quo
-                      aliquam. Dolorem alias quaerat consectetur inventore natus. Beatae optio cum
-                      modi placeat expedita voluptates? Amet quae temporibus repellat possimus?
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {productUser.length !== 0 && (
+              <>
+                <div className="navbar__home--footer-store_box__products list__product">
+                  <div className="navbar__home--footer-store_box__products-title">
+                    Sản Phẩm Mới Thêm
+                  </div>
+                  <ul>
+                    {productUser.map((product, index) => (
+                      <li key={index}>
+                        <img
+                          src={product.listUrlImage[product.listUrlImage.length - 1]}
+                          alt="images"
+                        />
+                        <span>
+                          {" "}
+                          {product.title
+                            .split(" ")
+                            .map((str: string, index: number) => {
+                              if (index >= 9) {
+                                return "";
+                              } else return str;
+                            })
+                            .join(" ") + ". . ."}
+                        </span>
+                        <div className="navbar__home--footer-store_box__products-price">
+                          {String(
+                            product.price[product.sizes.indexOf(user.stores[index].size)] *
+                              ((100 - product.discount) / 100) -
+                              0.001,
+                          )
+                            .split(".")
+                            .map((str: string, index: number) => {
+                              if (index === 1) {
+                                return str.padEnd(3, "0");
+                              } else {
+                                let result = "";
+                                let i = str.length;
+                                let placement = 0;
+                                while (i !== 0) {
+                                  i--;
+                                  if (placement % 3 === 0 && placement !== 0) {
+                                    result = str[i] + "," + result;
+                                  } else result = str[i] + result;
+                                  placement++;
+                                }
+                                return result;
+                              }
+                            })
+                            .join(".") + " đ"}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to="/user/account/store"
+                    className="navbar__home--footer-store_box__products-switch"
+                  >
+                    Xem Giỏ Hàng
+                  </Link>
+                </div>
+                <div className="navbar__home--footer-store_box__products-quantity">
+                  {productUser.length}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
