@@ -7,7 +7,6 @@ import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../redux/hook";
 import { updateUser, updateProductUser } from "../../../redux/reducer";
-import product1 from "../../../assets/image/product1.jpg";
 import "./Navbar.scss";
 import Logo from "../../logo/Logo";
 const Navbar: React.FC = () => {

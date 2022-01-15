@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsStarFill, BsDash, BsPlus } from "react-icons/bs";
+import { BsStarFill, BsDash, BsPlus, BsCartPlus } from "react-icons/bs";
 import LogoFree from "../../logo/LogoFree";
 import { FaCarSide } from "react-icons/fa";
 
@@ -32,18 +32,20 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
   const [placementInputTypes, setPlacementInputTypes] = useState<number>(-1);
   const [placementInputSizes, setPlacementInputSizes] = useState<number>(-1);
   const [amount, setAmount] = useState<number>(1);
-  const handleAmountDecrement = (e: React.ChangeEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log(e.target);
-
-    setAmount(amount - 1);
+  const handleAmountDecrement = () => {
+    if (amount > 0) setAmount(amount - 1);
   };
-
+  const handleAmountIncrement = () => {
+    if (amount < quantity) setAmount(amount + 1);
+  };
   const handleChangeInputTypes = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked ? setPlacementInputTypes(Number(e.target.name)) : setPlacementInputTypes(-1);
   };
   const handleChangeInputSizes = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked ? setPlacementInputSizes(Number(e.target.name)) : setPlacementInputSizes(-1);
+  };
+  const handleSubmitProduct = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   return (
@@ -187,7 +189,7 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
           </div>
         </div>
       </div>
-      <form className="product__main--detail-form">
+      <form onSubmit={handleSubmitProduct} className="product__main--detail-form">
         <div className="product__main--detail-form_type">
           <div className="product__main--detail-form_type__title">Loại</div>
           {types.map((type, index) => (
@@ -226,21 +228,44 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
         </div>
         <div className="product__main--detail-form_quantity">
           <div className="product__main--detail-form_quantity__title">Số Lượng</div>
+          <div className="product__main--detail-form_quantity__count">
+            <button
+              onClick={handleAmountDecrement}
+              className="product__main--detail-form_quantity__count-decrement"
+            >
+              <BsDash className="icon" />
+            </button>
+            <span className="product__main--detail-form_quantity__count-amount">{amount}</span>
+            <button
+              onClick={handleAmountIncrement}
+              className="product__main--detail-form_quantity__count-increment"
+            >
+              <BsPlus className="icon" />
+            </button>
+            <div className="product__main--detail-form_quantity__count-amount--total">
+              {" "}
+              {quantity} sản phẩm có sẵn{" "}
+            </div>
+          </div>
         </div>
-        <div className="product__main--detail-form_quantity__count">
-          <button
-            onChange={() => handleAmountDecrement}
-            className="product__main--detail-form_quantity__count-decrease"
-          >
-            <BsDash />
+
+        <div className="product__main--detail-form_add">
+          <button className="product__main--detail-form_add__store">
+            <BsCartPlus className="icon" />
+            <div className="product__main--detail-form_add__store-text">Thêm Vào Giỏ Hàng</div>
           </button>
-          <span className="product__main--detail-form_quantity__count-amount">1</span>
-          <button className="product__main--detail-form_quantity__count-decrease">
-            <BsPlus />
-          </button>
+          <button className="product__main--detail-form_add__buy">Mua Ngay</button>
         </div>
-        <div className="product__main--detail-form_add"></div>
       </form>
+      <div className="product__main--detail-footer">
+        <img
+          src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/pdp/67454c89080444c5997b53109072c9e0.png"
+          alt="img"
+          className="product__main--detail-footer--image"
+        />
+        <span className="product__main--detail-footer--text">Shopee Đảm Bảo</span>
+        <span className="product__main--detail-footer--detail">3 Ngày Trả Hàng / Hoàn Tiền</span>
+      </div>
     </>
   );
 };
