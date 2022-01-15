@@ -2,10 +2,19 @@ import React, { useState } from "react";
 import { BsStarFill, BsDash, BsPlus, BsCartPlus } from "react-icons/bs";
 import LogoFree from "../../logo/LogoFree";
 import { FaCarSide } from "react-icons/fa";
-
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import {
+  typeStateUserProps,
+  addProductStoreUser,
+  updateProductStoreUser,
+  updateUser,
+} from "../../../redux/reducer";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 import "./ProductMainDetail.scss";
 
 interface typeProductDetailProps {
+  id: any;
   types: string[];
   title: string;
   price: number[];
@@ -18,6 +27,7 @@ interface typeProductDetailProps {
   sizes: string[];
 }
 const ProductMainDetail: React.FC<typeProductDetailProps> = ({
+  id,
   discount,
   types,
   title,
@@ -29,11 +39,14 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
   quantity,
   sizes,
 }) => {
+  const user = useAppSelector(state => state.usersReducer.user) as typeStateUserProps;
+  const history = useHistory();
+  const dispatch = useAppDispatch();
   const [placementInputTypes, setPlacementInputTypes] = useState<number>(-1);
   const [placementInputSizes, setPlacementInputSizes] = useState<number>(-1);
   const [amount, setAmount] = useState<number>(1);
   const handleAmountDecrement = () => {
-    if (amount > 0) setAmount(amount - 1);
+    if (amount > 1) setAmount(amount - 1);
   };
   const handleAmountIncrement = () => {
     if (amount < quantity) setAmount(amount + 1);
@@ -47,6 +60,70 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
   const handleSubmitProduct = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+  const handleAddProductStore = () => {
+    if (user?.profile?.nameSignIn === "") {
+      history.push("/SignIn");
+      return;
+    }
+    if (placementInputTypes === -1) {
+      toast.warn("Vui Chon Loại Sản Phảm", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+    if (placementInputSizes === -1) {
+      toast.warn("Vui Chon Loại Kích Cỡ", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+    let isProductAlreadyStore = false;
+
+    user.stores.forEach(store => {
+      if (
+        String(store.id) === String(id) &&
+        String(store.types) === String(types[placementInputTypes - 1]) &&
+        String(store.size) === String(types[placementInputSizes - 1])
+      ) {
+        isProductAlreadyStore = true;
+      }
+    });
+
+    if (isProductAlreadyStore) {
+      dispatch(
+        updateProductStoreUser({
+          id: Number(id),
+          quantity: amount,
+          types: types[placementInputTypes],
+          size: sizes[placementInputSizes],
+          isBought: false,
+        }),
+      );
+    } else {
+      dispatch(
+        addProductStoreUser({
+          id: Number(id),
+          quantity: amount,
+          types: types[placementInputTypes],
+          size: sizes[placementInputSizes],
+          isBought: false,
+        }),
+      );
+    }
+  };
+  console.log(user);
 
   return (
     <>
@@ -250,7 +327,7 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
         </div>
 
         <div className="product__main--detail-form_add">
-          <button className="product__main--detail-form_add__store">
+          <button onClick={handleAddProductStore} className="product__main--detail-form_add__store">
             <BsCartPlus className="icon" />
             <div className="product__main--detail-form_add__store-text">Thêm Vào Giỏ Hàng</div>
           </button>

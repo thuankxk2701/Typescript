@@ -36,6 +36,8 @@ const Navbar: React.FC = () => {
     );
     dispatch(updateProductUser([]));
   };
+  console.log(user);
+  
 
   return (
     <nav className="navbar__home">

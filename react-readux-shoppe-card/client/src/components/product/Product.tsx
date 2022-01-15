@@ -43,6 +43,7 @@ const Product: React.FC = () => {
         </div>
         <div className="product__main--detail">
           <ProductMainDetail
+            id={id}
             discount={product.discount}
             types={product.types}
             title={product.title}

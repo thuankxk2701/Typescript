@@ -118,7 +118,8 @@ export interface typeStateStoreUserProps {
   id: any;
   types: string;
   size: string;
-  quantity: string;
+  quantity: number;
+  isBought: boolean;
 }
 export interface typeStateUserProps {
   profile: typeStateProfileUserProps;
@@ -147,9 +148,10 @@ const initialStateUsers: typeUsersProps = {
       stores: [
         {
           id: 1,
-          types: "ao gi day",
+          types: "Cả set",
           size: "L",
-          quantity: "1",
+          quantity: 1,
+          isBought: false,
         },
       ],
     },
@@ -205,6 +207,7 @@ const userReducer = createSlice({
         user: action.payload,
       };
     },
+
     getUser: (
       state: typeUsersProps,
       action: PayloadAction<{ nameSignIn: string; password: string }>,
@@ -219,6 +222,44 @@ const userReducer = createSlice({
         }),
       };
     },
+    addProductStoreUser: (state, action: PayloadAction<typeStateStoreUserProps>) => {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          stores: [...state.user.stores, action.payload],
+        },
+      };
+    },
+    deleteProductStoreUser: (state, action: PayloadAction<typeStateStoreUserProps>) => {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          stores: state.user.stores.filter(
+            (store: typeStateStoreUserProps) => store === action.payload,
+          ),
+        },
+      };
+    },
+    updateProductStoreUser: (state, action: PayloadAction<typeStateStoreUserProps>) => {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          stores: state.user.stores.map((store: typeStateStoreUserProps) => {
+            if (
+              store.id === action.payload.id &&
+              store.types === action.payload.types &&
+              store.size === action.payload.size
+            ) {
+              return action.payload;
+            }
+            return store;
+          }),
+        },
+      };
+    },
     updateClient: (state: typeUsersProps, action: PayloadAction<{ nameSignIn: string }>) => {
       return {
         ...state,
@@ -231,7 +272,14 @@ const userReducer = createSlice({
 });
 
 export const { addProduct, updateProductUser, getProduct } = productReducer.actions;
-export const { updateUser, getUser, updateClient } = userReducer.actions;
+export const {
+  updateUser,
+  getUser,
+  updateClient,
+  addProductStoreUser,
+  deleteProductStoreUser,
+  updateProductStoreUser,
+} = userReducer.actions;
 
 export const usersReducer = userReducer.reducer;
 export const productsReducer = productReducer.reducer;
