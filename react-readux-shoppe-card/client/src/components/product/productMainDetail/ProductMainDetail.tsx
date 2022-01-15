@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsStarFill, BsDash, BsPlus, BsCartPlus } from "react-icons/bs";
 import LogoFree from "../../logo/LogoFree";
 import { FaCarSide } from "react-icons/fa";
@@ -7,7 +7,7 @@ import {
   typeStateUserProps,
   addProductStoreUser,
   updateProductStoreUser,
-  updateUser,
+  updateProductUser,
 } from "../../../redux/reducer";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
@@ -90,16 +90,16 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
       return;
     }
     let isProductAlreadyStore = false;
-
     user.stores.forEach(store => {
       if (
         String(store.id) === String(id) &&
-        String(store.types) === String(types[placementInputTypes - 1]) &&
-        String(store.size) === String(types[placementInputSizes - 1])
+        String(store.types) === String(types[placementInputTypes]) &&
+        String(store.size) === String(sizes[placementInputSizes])
       ) {
         isProductAlreadyStore = true;
       }
     });
+    console.log(isProductAlreadyStore);
 
     if (isProductAlreadyStore) {
       dispatch(
@@ -123,7 +123,9 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
       );
     }
   };
-  console.log(user);
+  useEffect(() => {
+    dispatch(updateProductUser(user.stores));
+  }, [user.stores]);
 
   return (
     <>

@@ -12,6 +12,7 @@ import Logo from "../../logo/Logo";
 const Navbar: React.FC = () => {
   const user = useAppSelector(state => state.usersReducer.user);
   const productUser = useAppSelector(state => state.productsReducer.productUser);
+  
 
   const dispatch = useAppDispatch();
 
@@ -36,8 +37,7 @@ const Navbar: React.FC = () => {
     );
     dispatch(updateProductUser([]));
   };
-  console.log(user);
-  
+
 
   return (
     <nav className="navbar__home">

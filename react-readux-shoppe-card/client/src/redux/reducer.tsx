@@ -145,15 +145,7 @@ const initialStateUsers: typeUsersProps = {
         urlImage:
           "https://scontent.fhan4-3.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-5&_nc_sid=7206a8&_nc_ohc=KDrWhKdadx4AX9SilKU&_nc_ht=scontent.fhan4-3.fna&oh=00_AT__Lo84sx1SoiBGnKKxeKtmIQOv5lOnjVw7hmak4uWnCw&oe=6200C278",
       },
-      stores: [
-        {
-          id: 1,
-          types: "Cả set",
-          size: "L",
-          quantity: 1,
-          isBought: false,
-        },
-      ],
+      stores: [],
     },
   ],
   user: {
