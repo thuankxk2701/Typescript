@@ -1,0 +1,64 @@
+.user__store{
+     padding: 10px;
+     
+     &--heading{
+         font-size: 30px;
+         font-weight: bold;
+         height: 70px;
+         line-height: 70px;
+         text-align: center;
+         border-bottom: 1px solid rgba(0,0,0,0.2);
+         box-sizing: border-box;
+     }
+     &--product{
+           margin-top: 16px;
+           
+           &-nav{
+               display: flex;
+
+               &_choose{
+                   margin-top: 4px;
+                   width: 30px;
+                   margin-top: 6px;
+               }
+               &_product{
+                   width: 400px;
+                   text-align: center;
+                   margin-top: 3px;    
+               }
+               &_unit__price{
+                   width: 80px;
+                   text-align: center;
+                   margin-top: 3px;
+               }
+               &_quantity{
+                   width: 120px;
+                   text-align: center;
+                   margin-top: 3px;
+               }
+               &_price{
+                   width: 60px;
+                   text-align: center;
+                   margin-top: 3px;
+               }
+               &_operation{
+                   width: 100px;
+                   text-align: center;
+                   margin-top: 3px;
+               }
+               &_select{
+                   
+                   width: 100px;
+                   height: 30px;
+                   border: none;
+                
+                   
+                 
+               }
+           }
+           &-list{
+               min-height: 420px;
+               
+           }
+     }
+}

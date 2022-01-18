@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { MdOutlineEventNote } from "react-icons/md";
 import UserProfile from "./userProfile/UserProfile";
 import UserPassword from "./userFormConvert/UserFormConvert";
+import UserStore from "./userStore/UserStore";
 import "./UserAccount.scss";
 
 const UserAccount: React.FC = () => {
@@ -114,6 +115,7 @@ const UserAccount: React.FC = () => {
             {title === "password" && <UserPassword types={title} user={user} />}
             {title === "email" && <UserPassword types={title} user={user} />}
             {title === "phone" && <UserPassword types={title} user={user} />}
+            {title === "store" && <UserStore user={user} />}
           </div>
         </div>
       </div>
