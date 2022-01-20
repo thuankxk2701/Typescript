@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
 import Navbar from "../home/NavbarHome/Navbar";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../../redux/reducer";
+import { getProduct, stateAllProductProps } from "../../redux/reducer";
 
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import Spinner from "react-bootstrap/Spinner";
 import ProductMainCarousel from "./productMainCarousel/ProductMainCarousel";
 import ProductMainDetail from "./productMainDetail/ProductMainDetail";
 import ProductDetailOwner from "./productDetailOwner/ProductDetailOwner";
+import ProductDescription from "./productDescription/ProductDescription";
+import LoginFooter from "../login/LoginFooter";
 import "./Product.scss";
 const Product: React.FC = () => {
   const dispatch = useAppDispatch();
-  const product = useAppSelector((state: any) => state.productsReducer.product);
+  const product = useAppSelector(
+    (state: any) => state.productsReducer.product,
+  ) as stateAllProductProps;
 
   useEffect(() => {
     dispatch(getProduct(id));
@@ -73,6 +77,21 @@ const Product: React.FC = () => {
           favorite={product.favorite}
         />
       </div>
+      <div className="product__description">
+        <ProductDescription
+          category={product.description.detailProduct.category}
+          heightSkirt={product.description.detailProduct.heightSkirt}
+          season={product.description.detailProduct.season}
+          sendAddress={product.description.detailProduct.sendAddress}
+          style={product.description.detailProduct.style}
+          substance={product.description.detailProduct.substance}
+          typeSkirt={product.description.detailProduct.typeSkirt}
+          waitVersion={product.description.detailProduct.waitVersion}
+          productDescription={product.description.productDescription}
+        />
+      </div>
+      <div className="product__line"></div>
+      <LoginFooter />
     </div>
   );
 };

@@ -18,6 +18,7 @@ const UserStore: React.FC<userStoreProrps> = ({ user }) => {
   if (productUser.length === 0) {
     history.push("/");
   }
+  
   return (
     <>
       <div className="user__store">
@@ -41,6 +42,7 @@ const UserStore: React.FC<userStoreProrps> = ({ user }) => {
               <option value="sortPriceDescending">Giảm Dần</option>
             </Form.Select>
           </div>
+
           <div className="user__store--product-list"></div>
         </div>
         <div className="user__store--buy"></div>

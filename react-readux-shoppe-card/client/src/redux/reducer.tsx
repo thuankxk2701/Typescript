@@ -86,10 +86,10 @@ const initialStateProducts: typesInitialStateProductProps = {
       description: {
         detailProduct: {
           category: ["Shopee", "Women Clothes", "Skirts"],
-          season: "mùa thu",
+          season: "Mùa thu",
           style: "Hàn Quốc",
           waitVersion: "Bản to",
-          typeSkirt: "váy xòe",
+          typeSkirt: "Váy xòe",
           substance: "Đũi lạnh",
           heightSkirt: "~100cm không tính dây",
           sendAddress: "Huyện Gia lâm,Hà Nội",
