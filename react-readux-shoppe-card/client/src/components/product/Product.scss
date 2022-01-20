@@ -35,6 +35,7 @@
         margin: 0 auto; 
         display: flex;
         margin-top: 10px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
         &--carousel{
             width: 36%;
             display: flex;
@@ -44,5 +45,13 @@
             width: 64%;
         }
 
+    }
+    &__owner{
+     
+        padding: 10px;
+        width: 1200px;
+        height: 130px;
+        background-color: #fff;
+        margin: 20px auto 0; 
     }
 }

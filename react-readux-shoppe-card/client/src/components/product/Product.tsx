@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import Spinner from "react-bootstrap/Spinner";
 import ProductMainCarousel from "./productMainCarousel/ProductMainCarousel";
 import ProductMainDetail from "./productMainDetail/ProductMainDetail";
+import ProductDetailOwner from "./productDetailOwner/ProductDetailOwner";
 import "./Product.scss";
 const Product: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ const Product: React.FC = () => {
       </div>
     );
   }
+  console.log(product);
 
   return (
     <div className="product">
@@ -56,6 +58,20 @@ const Product: React.FC = () => {
             sizes={product.sizes}
           />
         </div>
+      </div>
+      <div className="product__owner">
+        <ProductDetailOwner
+          logoUrl={product.owner.logoUrl}
+          name={product.owner.name}
+          participation={product.owner.participation}
+          peopleFlowing={product.owner.peopleFlowing}
+          product={product.owner.product}
+          rate={product.owner.rate}
+          responseRate={product.owner.responseRate}
+          responseTime={product.owner.responseTime}
+          timeActiveAgo={product.owner.timeActiveAgo}
+          favorite={product.favorite}
+        />
       </div>
     </div>
   );

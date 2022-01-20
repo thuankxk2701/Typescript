@@ -79,7 +79,7 @@ const initialStateProducts: typesInitialStateProductProps = {
         rate: 8200,
         product: 329,
         responseRate: 100,
-        responseTime: "trong vai gio",
+        responseTime: "trong vài giờ",
         participation: "5 năm trước ",
         peopleFlowing: 33700,
       },
