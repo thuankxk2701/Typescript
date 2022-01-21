@@ -229,7 +229,7 @@ const userReducer = createSlice({
         user: {
           ...state.user,
           stores: state.user.stores.filter(
-            (store: typeStateStoreUserProps) => store === action.payload,
+            (store: typeStateStoreUserProps) => store !== action.payload,
           ),
         },
       };

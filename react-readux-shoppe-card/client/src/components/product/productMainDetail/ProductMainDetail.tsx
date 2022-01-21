@@ -99,7 +99,6 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
         isProductAlreadyStore = true;
       }
     });
-    console.log(isProductAlreadyStore);
 
     if (isProductAlreadyStore) {
       dispatch(
