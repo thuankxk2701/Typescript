@@ -115,7 +115,7 @@ const UserAccount: React.FC = () => {
             {title === "password" && <UserPassword types={title} user={user} />}
             {title === "email" && <UserPassword types={title} user={user} />}
             {title === "phone" && <UserPassword types={title} user={user} />}
-            {title === "store" && <UserStore user={user} />}
+            {title === "store" && <UserStore />}
           </div>
         </div>
       </div>

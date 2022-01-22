@@ -1,26 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import { useHistory } from "react-router-dom";
-import { typeStateUserProps } from "../../../redux/reducer";
+import {
+  typeStateUserProps,
+  typeStateStoreUserProps,
+  updateProductUser,
+  updateProductStoreUser,
+  deleteProductStoreUser,
+} from "../../../redux/reducer";
 import Form from "react-bootstrap/Form";
 import { BsDash, BsPlus } from "react-icons/bs";
 import "./UserStore.scss";
 
-interface userStoreProrps {
-  user: typeStateUserProps;
-}
-
-const UserStore: React.FC<userStoreProrps> = ({ user }) => {
+const UserStore: React.FC = () => {
   const history = useHistory();
   const productUser = useAppSelector(state => state.productsReducer.productUser);
+  const user = useAppSelector(state => state.usersReducer.user) as typeStateUserProps;
+
   const dispatch = useAppDispatch();
-  const [amount, setAmount] = useState<Number>(0);
-  const handleChangeAmount = () => {};
-  console.log(user.stores);
   const handleSubmitFormStoreUser = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+  const handleIncrementAmount = (
+    id: any,
+    quantity: number,
+    types: string,
+    size: string,
+    isBought: boolean,
+    totalAmount: number,
+  ) => {
+    if (quantity < totalAmount)
+      dispatch(
+        updateProductStoreUser({
+          id,
+          quantity: quantity + 1,
+          types,
+          size,
+          isBought,
+        }),
+      );
+  };
+  const handleDecrementAmount = (
+    id: any,
+    quantity: number,
+    types: string,
+    size: string,
+    isBought: boolean,
+  ) => {
+    if (quantity > 1)
+      dispatch(
+        updateProductStoreUser({
+          id,
+          quantity: quantity - 1,
+          types,
+          size,
+          isBought,
+        }),
+      );
+  };
+  const handleDeleteProduct = (store: typeStateStoreUserProps) => {
+    dispatch(deleteProductStoreUser(store));
+  };
+  console.log(user.stores);
 
+  useEffect(() => {
+    dispatch(updateProductUser(user.stores));
+  }, [user.stores.length]);
   return (
     <>
       <form onSubmit={handleSubmitFormStoreUser} className="user__store">
@@ -135,13 +180,36 @@ const UserStore: React.FC<userStoreProrps> = ({ user }) => {
                     </div>
                   </div>
                   <div className="user__store--product-list_count">
-                    <button className="user__store--product-list_count__decrement">
+                    <button
+                      onClick={() =>
+                        handleDecrementAmount(
+                          store.id,
+                          store.quantity,
+                          store.types,
+                          store.size,
+                          store.isBought,
+                        )
+                      }
+                      className="user__store--product-list_count__decrement"
+                    >
                       <BsDash className="icon" />
                     </button>
                     <span className="user__store--product-list_count__amount">
                       {store.quantity}
                     </span>
-                    <button className="user__store--product-list_count__increment">
+                    <button
+                      onClick={() =>
+                        handleIncrementAmount(
+                          store.id,
+                          store.quantity,
+                          store.types,
+                          store.size,
+                          store.isBought,
+                          productUser[index].quantity,
+                        )
+                      }
+                      className="user__store--product-list_count__increment"
+                    >
                       <BsPlus className="icon" />
                     </button>
                   </div>
@@ -172,7 +240,12 @@ const UserStore: React.FC<userStoreProrps> = ({ user }) => {
                       })
                       .join(".") + "đ"}
                   </div>
-                  <button className="user__store--product-list_delete">Xóa</button>
+                  <button
+                    onClick={() => handleDeleteProduct(store)}
+                    className="user__store--product-list_delete"
+                  >
+                    Xóa
+                  </button>
                 </div>
               ))}
           </div>
