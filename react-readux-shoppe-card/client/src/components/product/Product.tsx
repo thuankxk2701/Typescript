@@ -30,7 +30,6 @@ const Product: React.FC = () => {
       </div>
     );
   }
-  console.log(product);
 
   return (
     <div className="product">

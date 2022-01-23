@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BsFacebook, BsInstagram, BsGlobe2 } from "react-icons/bs";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { BiHelpCircle } from "react-icons/bi";
@@ -6,15 +6,21 @@ import { FaSearch } from "react-icons/fa";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../redux/hook";
-import { updateUser, updateProductUser } from "../../../redux/reducer";
+import { updateUser, typeStateUserProps, stateAllProductProps } from "../../../redux/reducer";
 import "./Navbar.scss";
 import Logo from "../../logo/Logo";
 const Navbar: React.FC = () => {
-  const user = useAppSelector(state => state.usersReducer.user);
+  const user = useAppSelector(state => state.usersReducer.user) as typeStateUserProps;
 
-  const productUser = useAppSelector(state => state.productsReducer.productUser);
+  const products = useAppSelector(state => state.productsReducer.products);
 
   const dispatch = useAppDispatch();
+
+  let productUser: stateAllProductProps[] = [];
+  for (let i = 0; i < user.stores.length; i++) {
+    const data = products.find(product => product.id === user.stores[i].id) as stateAllProductProps;
+    productUser.push(data);
+  }
 
   const handleSubmitSignUp = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +41,6 @@ const Navbar: React.FC = () => {
         stores: [],
       }),
     );
-    dispatch(updateProductUser([]));
   };
 
   return (

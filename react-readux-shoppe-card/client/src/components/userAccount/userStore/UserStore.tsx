@@ -1,21 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hook";
-import { useHistory } from "react-router-dom";
+
 import {
   typeStateUserProps,
   typeStateStoreUserProps,
-  updateProductUser,
   updateProductStoreUser,
   deleteProductStoreUser,
+  stateAllProductProps,
 } from "../../../redux/reducer";
 import Form from "react-bootstrap/Form";
 import { BsDash, BsPlus } from "react-icons/bs";
 import "./UserStore.scss";
 
 const UserStore: React.FC = () => {
-  const history = useHistory();
-  const productUser = useAppSelector(state => state.productsReducer.productUser);
+  const products = useAppSelector(state => state.productsReducer.products);
   const user = useAppSelector(state => state.usersReducer.user) as typeStateUserProps;
+  let productUser: stateAllProductProps[] = [];
+  for (let i = 0; i < user.stores.length; i++) {
+    const data = products.find(product => product.id === user.stores[i].id) as stateAllProductProps;
+    productUser.push(data);
+  }
 
   const dispatch = useAppDispatch();
   const handleSubmitFormStoreUser = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -61,11 +65,7 @@ const UserStore: React.FC = () => {
   const handleDeleteProduct = (store: typeStateStoreUserProps) => {
     dispatch(deleteProductStoreUser(store));
   };
-  console.log(user.stores);
 
-  useEffect(() => {
-    dispatch(updateProductUser(user.stores));
-  }, [user.stores.length]);
   return (
     <>
       <form onSubmit={handleSubmitFormStoreUser} className="user__store">
