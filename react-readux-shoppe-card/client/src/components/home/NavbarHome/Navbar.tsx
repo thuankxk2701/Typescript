@@ -15,12 +15,16 @@ const Navbar: React.FC = () => {
   const products = useAppSelector(state => state.productsReducer.products);
 
   const dispatch = useAppDispatch();
-
   let productUser: stateAllProductProps[] = [];
   for (let i = 0; i < user.stores.length; i++) {
-    const data = products.find(product => product.id === user.stores[i].id) as stateAllProductProps;
-    productUser.push(data);
+    const product = products.find(
+      product => product.id === user.stores[i].id,
+    ) as stateAllProductProps;
+
+    productUser.push(product);
   }
+
+  
 
   const handleSubmitSignUp = (e: React.FormEvent) => {
     e.preventDefault();

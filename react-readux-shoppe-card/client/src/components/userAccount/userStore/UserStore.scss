@@ -57,9 +57,8 @@
                }
            }
            &-lists{
-               height: 420px;
-               overflow: auto;
-             
+               height: 440px;
+               overflow: auto;             
                color: #000;
                
            }
@@ -90,6 +89,7 @@
                    }
                }
                &_types{
+                   width: 110px;
                    color: #7c7c7c;
                   margin-right: 20px;
                }
@@ -176,6 +176,31 @@
                        color: #ee4d2d;
                    }
                }
-           }
+           }           
+     }
+     &--buy{
+         display: flex;
+         height: 50px;
+         align-items: center;
+         justify-content: space-around;
+         font-size: 20px;
+
+          &-total{
+              
+            &_price{
+                 color: #ee4d2d;
+                   }
+          }
+          &-button{
+              border: none;
+              outline: none;
+              background-color: #ee4d2d;
+              color: #fff;
+              padding: 4px 32px;
+              &:hover{
+                  background-color: #fd6a4c;
+              }
+
+       }
      }
 }

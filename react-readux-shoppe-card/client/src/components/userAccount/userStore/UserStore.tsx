@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 
 import {
@@ -15,10 +15,25 @@ import "./UserStore.scss";
 const UserStore: React.FC = () => {
   const products = useAppSelector(state => state.productsReducer.products);
   const user = useAppSelector(state => state.usersReducer.user) as typeStateUserProps;
+  const [isChooseAllProduct, setIsChooseAllProduct] = useState<boolean>(false);
+  let totalPriceChooseBuy: any = 0;
+  let totalQuantityProductChooseBuy: number = 0;
   let productUser: stateAllProductProps[] = [];
   for (let i = 0; i < user.stores.length; i++) {
-    const data = products.find(product => product.id === user.stores[i].id) as stateAllProductProps;
-    productUser.push(data);
+    const product = products.find(
+      product => product.id === user.stores[i].id,
+    ) as stateAllProductProps;
+    if (user.stores[i].isBought) {
+      totalPriceChooseBuy +=
+        user.stores[i].quantity *
+        product.price[product.sizes.indexOf(user.stores[i].size)] *
+        ((100 - product.discount) / 100);
+      ++totalQuantityProductChooseBuy;
+    }
+    productUser.push(product);
+  }
+  if (totalPriceChooseBuy !== 0) {
+    totalPriceChooseBuy -= 0.001;
   }
 
   const dispatch = useAppDispatch();
@@ -65,7 +80,37 @@ const UserStore: React.FC = () => {
   const handleDeleteProduct = (store: typeStateStoreUserProps) => {
     dispatch(deleteProductStoreUser(store));
   };
-
+  const handleChangeInputCheckboxProduct = (
+    id: any,
+    quantity: number,
+    types: string,
+    size: string,
+    isBought: boolean,
+  ) => {
+    dispatch(
+      updateProductStoreUser({
+        id,
+        quantity,
+        types,
+        size,
+        isBought: !isBought,
+      }),
+    );
+  };
+  const handleChooseBuyAllProduct = (userStores: typeStateStoreUserProps[]) => {
+    for (let userStore of userStores) {
+      dispatch(
+        updateProductStoreUser({
+          id: userStore.id,
+          quantity: userStore.quantity,
+          types: userStore.types,
+          size: userStore.size,
+          isBought: !isChooseAllProduct,
+        }),
+      );
+    }
+    setIsChooseAllProduct(!isChooseAllProduct);
+  };
   return (
     <>
       <form onSubmit={handleSubmitFormStoreUser} className="user__store">
@@ -74,7 +119,12 @@ const UserStore: React.FC = () => {
         </div>
         <div className="user__store--product">
           <div className="user__store--product-nav">
-            <input type="checkbox" className="user__store--product-nav_choose" />
+            <input
+              type="checkbox"
+              checked={isChooseAllProduct}
+              onChange={() => handleChooseBuyAllProduct(user.stores)}
+              className="user__store--product-nav_choose"
+            />
             <div className="user__store--product-nav_product">Sản Phẩm</div>
             <div className="user__store--product-nav_unit__price">Đơn Giá</div>
             <div className="user__store--product-nav_quantity">Số Lượng</div>
@@ -93,7 +143,20 @@ const UserStore: React.FC = () => {
             {user.stores.length !== 0 &&
               user.stores.map((store, index) => (
                 <div className="user__store--product-list" key={index}>
-                  <input type="checkbox" className="user__store--product-list_input" />
+                  <input
+                    type="checkbox"
+                    checked={store.isBought}
+                    onChange={() =>
+                      handleChangeInputCheckboxProduct(
+                        store.id,
+                        store.quantity,
+                        store.types,
+                        store.size,
+                        store.isBought,
+                      )
+                    }
+                    className="user__store--product-list_input"
+                  />
                   <img
                     src={
                       productUser[index].listUrlImage[productUser[index].sizes.indexOf(store.size)]
@@ -250,7 +313,34 @@ const UserStore: React.FC = () => {
               ))}
           </div>
         </div>
-        <div className="user__store--buy"></div>
+        <div className="user__store--buy">
+          <div className="user__store--buy-total">
+            {`Tổng thanh toán (${totalQuantityProductChooseBuy} sản phẩm) : `}
+            <span className="user__store--buy-total_price">
+              {String(totalPriceChooseBuy)
+                .split(".")
+                .map((str: string, index: number) => {
+                  if (index === 1) {
+                    return str.padEnd(3, "0");
+                  } else {
+                    let result = "";
+                    let i = str.length;
+                    let placement = 0;
+                    while (i !== 0) {
+                      i--;
+                      if (placement % 3 === 0 && placement !== 0) {
+                        result = str[i] + "," + result;
+                      } else result = str[i] + result;
+                      placement++;
+                    }
+                    return result;
+                  }
+                })
+                .join(".") + "đ"}
+            </span>
+          </div>
+          <button className="user__store--buy-button">Mua Hàng</button>
+        </div>
       </form>
     </>
   );
