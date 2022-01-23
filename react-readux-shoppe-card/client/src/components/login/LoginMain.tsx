@@ -5,7 +5,7 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 import { AiFillApple } from "react-icons/ai";
 import { Link, useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { updateProductUser } from "../../redux/reducer";
+
 import { getUser } from "../../redux/reducer";
 import { toast } from "react-toastify";
 
@@ -73,7 +73,6 @@ const LoginMain: React.FC<loginMainProps> = ({ types }) => {
     }
     if (nameSignIn.trim() !== "" && password.trim() !== "")
       dispatch(getUser({ nameSignIn: nameSignIn, password: password }));
-    dispatch(updateProductUser(account.stores));
 
     history.push("/");
   };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BsStarFill, BsDash, BsPlus, BsCartPlus } from "react-icons/bs";
 import LogoFree from "../../logo/LogoFree";
 import { FaCarSide } from "react-icons/fa";
@@ -7,7 +7,6 @@ import {
   typeStateUserProps,
   addProductStoreUser,
   updateProductStoreUser,
-  updateProductUser,
 } from "../../../redux/reducer";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
@@ -122,9 +121,6 @@ const ProductMainDetail: React.FC<typeProductDetailProps> = ({
       );
     }
   };
-  useEffect(() => {
-    dispatch(updateProductUser(user.stores));
-  }, [user.stores]);
 
   return (
     <>

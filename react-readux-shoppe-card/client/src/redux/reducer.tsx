@@ -45,7 +45,7 @@ export interface stateAllProductProps {
 
 export interface typesInitialStateProductProps {
   products: stateAllProductProps[];
-  productUser: stateAllProductProps[];
+
   product: any;
 }
 const initialStateProducts: typesInitialStateProductProps = {
@@ -98,7 +98,7 @@ const initialStateProducts: typesInitialStateProductProps = {
       },
     },
   ],
-  productUser: [],
+
   product: null,
 };
 
@@ -169,14 +169,6 @@ const productReducer = createSlice({
   name: "products",
   initialState: initialStateProducts,
   reducers: {
-    updateProductUser: (state, action: PayloadAction<any>) => {
-      return {
-        ...state,
-        productUser: action.payload.map((productUser: typeStateStoreUserProps) => {
-          return state.products.find(product => product.id === productUser.id);
-        }),
-      };
-    },
     addProduct: (state, action: PayloadAction<stateAllProductProps>) => {
       state.products.push(action.payload);
       return state;
@@ -270,7 +262,7 @@ const userReducer = createSlice({
   },
 });
 
-export const { addProduct, updateProductUser, getProduct } = productReducer.actions;
+export const { addProduct, getProduct } = productReducer.actions;
 export const {
   updateUser,
   getUser,
