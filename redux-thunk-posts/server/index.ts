@@ -1,8 +1,10 @@
 import  express from  'express';
 import  cors from 'cors';
 import  path from 'path';
-const app=express();
-import  fileRoutes from "./routes/fileUpdateRoutes";
+import dotenv from "dotenv";
+import fileRoutes from "./routes/fileUpdateRoutes";
+dotenv.config();
+const app = express();
 require("dotenv").config();
 app.use(cors());
 
