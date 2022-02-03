@@ -16,8 +16,7 @@ const UpdatePost: React.FC = () => {
     
   }, []);
   useEffect(() => {
-    if(!post) return ;
-   
+    if (!post) return;   
     
       setTitle(post.title);
       setBody(post.body);

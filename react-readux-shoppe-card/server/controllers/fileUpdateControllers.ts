@@ -25,4 +25,12 @@ const fileSizeFormatter = (bytes: number, decimal: number) => {
   const index = Math.floor(Math.log(bytes) / Math.log(1000));
   return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + " " + sizes[index];
 };
-export { postSingleFileUpload };
+const getSingleFileUpload = async (req: any, res: any, next: any) => {
+  try {
+    const files = await SingleFile.find();
+    res.status(200).send(files);
+  } catch (error: any) {
+    res.status(400).send(error.message);
+  }
+};
+export { postSingleFileUpload, getSingleFileUpload };
