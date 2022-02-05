@@ -5,7 +5,7 @@ import { getAllProducts, getProduct } from "../controllers/products";
 
 const router = express.Router();
 
-router.post("/singleFile", upload.single("file"), postSingleFileUpload);
+router.route("/singleFile").post(upload.single("file"), postSingleFileUpload);
 router.route("/").get(getAllProducts);
 router.route("/:id").get(getProduct);
 
